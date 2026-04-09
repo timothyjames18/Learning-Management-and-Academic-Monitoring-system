@@ -66,6 +66,7 @@
             this.lblConfirmPass = new System.Windows.Forms.Label();
             this.BtnRemovePfp = new System.Windows.Forms.Button();
             this.pbxPfp = new System.Windows.Forms.PictureBox();
+            this.chkShowPassword = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPfp)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,7 +82,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(106, 350);
+            this.lblEmail.Location = new System.Drawing.Point(76, 350);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(32, 13);
             this.lblEmail.TabIndex = 2;
@@ -117,7 +118,7 @@
             // lblphone
             // 
             this.lblphone.AutoSize = true;
-            this.lblphone.Location = new System.Drawing.Point(106, 295);
+            this.lblphone.Location = new System.Drawing.Point(76, 295);
             this.lblphone.Name = "lblphone";
             this.lblphone.Size = new System.Drawing.Size(61, 13);
             this.lblphone.TabIndex = 6;
@@ -126,7 +127,7 @@
             // lblmothername
             // 
             this.lblmothername.AutoSize = true;
-            this.lblmothername.Location = new System.Drawing.Point(301, 295);
+            this.lblmothername.Location = new System.Drawing.Point(304, 343);
             this.lblmothername.Name = "lblmothername";
             this.lblmothername.Size = new System.Drawing.Size(78, 13);
             this.lblmothername.TabIndex = 7;
@@ -135,7 +136,7 @@
             // lblfathername
             // 
             this.lblfathername.AutoSize = true;
-            this.lblfathername.Location = new System.Drawing.Point(535, 295);
+            this.lblfathername.Location = new System.Drawing.Point(538, 343);
             this.lblfathername.Name = "lblfathername";
             this.lblfathername.Size = new System.Drawing.Size(75, 13);
             this.lblfathername.TabIndex = 8;
@@ -144,7 +145,7 @@
             // lblMOccupation
             // 
             this.lblMOccupation.AutoSize = true;
-            this.lblMOccupation.Location = new System.Drawing.Point(301, 350);
+            this.lblMOccupation.Location = new System.Drawing.Point(304, 398);
             this.lblMOccupation.Name = "lblMOccupation";
             this.lblMOccupation.Size = new System.Drawing.Size(105, 13);
             this.lblMOccupation.TabIndex = 9;
@@ -153,7 +154,7 @@
             // lblFOccupation
             // 
             this.lblFOccupation.AutoSize = true;
-            this.lblFOccupation.Location = new System.Drawing.Point(535, 350);
+            this.lblFOccupation.Location = new System.Drawing.Point(538, 398);
             this.lblFOccupation.Name = "lblFOccupation";
             this.lblFOccupation.Size = new System.Drawing.Size(102, 13);
             this.lblFOccupation.TabIndex = 10;
@@ -172,7 +173,7 @@
             // 
             this.BtnProfEdit.FlatAppearance.BorderSize = 0;
             this.BtnProfEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnProfEdit.Location = new System.Drawing.Point(473, 419);
+            this.BtnProfEdit.Location = new System.Drawing.Point(476, 467);
             this.BtnProfEdit.Name = "BtnProfEdit";
             this.BtnProfEdit.Size = new System.Drawing.Size(102, 44);
             this.BtnProfEdit.TabIndex = 12;
@@ -184,7 +185,7 @@
             // 
             this.BtnProfSave.FlatAppearance.BorderSize = 0;
             this.BtnProfSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnProfSave.Location = new System.Drawing.Point(599, 419);
+            this.BtnProfSave.Location = new System.Drawing.Point(602, 467);
             this.BtnProfSave.Name = "BtnProfSave";
             this.BtnProfSave.Size = new System.Drawing.Size(102, 44);
             this.BtnProfSave.TabIndex = 13;
@@ -206,130 +207,130 @@
             // 
             // txtFullName
             // 
-            this.txtFullName.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtFullName.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtFullName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtFullName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtFullName.Location = new System.Drawing.Point(404, 63);
             this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(191, 19);
+            this.txtFullName.Size = new System.Drawing.Size(191, 16);
             this.txtFullName.TabIndex = 15;
             // 
             // txtFirstName
             // 
-            this.txtFirstName.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtFirstName.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtFirstName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtFirstName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtFirstName.Location = new System.Drawing.Point(404, 98);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(191, 19);
+            this.txtFirstName.Size = new System.Drawing.Size(191, 16);
             this.txtFirstName.TabIndex = 16;
             // 
             // txtMiddleName
             // 
-            this.txtMiddleName.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtMiddleName.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtMiddleName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMiddleName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMiddleName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtMiddleName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtMiddleName.Location = new System.Drawing.Point(404, 136);
             this.txtMiddleName.Name = "txtMiddleName";
-            this.txtMiddleName.Size = new System.Drawing.Size(191, 19);
+            this.txtMiddleName.Size = new System.Drawing.Size(191, 16);
             this.txtMiddleName.TabIndex = 17;
             // 
             // txtSurname
             // 
-            this.txtSurname.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtSurname.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtSurname.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtSurname.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtSurname.Location = new System.Drawing.Point(404, 171);
             this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(191, 19);
+            this.txtSurname.Size = new System.Drawing.Size(191, 16);
             this.txtSurname.TabIndex = 18;
             // 
             // txtStatus
             // 
-            this.txtStatus.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtStatus.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtStatus.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtStatus.Location = new System.Drawing.Point(404, 27);
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(191, 19);
+            this.txtStatus.Size = new System.Drawing.Size(191, 16);
             this.txtStatus.TabIndex = 19;
             // 
             // txtPhone
             // 
-            this.txtPhone.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtPhone.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtPhone.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtPhone.Location = new System.Drawing.Point(106, 319);
+            this.txtPhone.Location = new System.Drawing.Point(76, 319);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(143, 19);
+            this.txtPhone.Size = new System.Drawing.Size(143, 16);
             this.txtPhone.TabIndex = 20;
             // 
             // txtEmail
             // 
-            this.txtEmail.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtEmail.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtEmail.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtEmail.Location = new System.Drawing.Point(106, 367);
+            this.txtEmail.Location = new System.Drawing.Point(76, 367);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(143, 19);
+            this.txtEmail.Size = new System.Drawing.Size(143, 16);
             this.txtEmail.TabIndex = 21;
             // 
             // txtMName
             // 
-            this.txtMName.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtMName.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtMName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtMName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtMName.Location = new System.Drawing.Point(301, 319);
+            this.txtMName.Location = new System.Drawing.Point(304, 367);
             this.txtMName.Name = "txtMName";
-            this.txtMName.Size = new System.Drawing.Size(166, 19);
+            this.txtMName.Size = new System.Drawing.Size(166, 16);
             this.txtMName.TabIndex = 22;
             // 
             // txtMOccupation
             // 
-            this.txtMOccupation.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtMOccupation.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtMOccupation.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMOccupation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMOccupation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtMOccupation.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtMOccupation.Location = new System.Drawing.Point(301, 367);
+            this.txtMOccupation.Location = new System.Drawing.Point(304, 415);
             this.txtMOccupation.Name = "txtMOccupation";
-            this.txtMOccupation.Size = new System.Drawing.Size(166, 19);
+            this.txtMOccupation.Size = new System.Drawing.Size(166, 16);
             this.txtMOccupation.TabIndex = 23;
             // 
             // txtFName
             // 
-            this.txtFName.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtFName.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtFName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtFName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtFName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtFName.Location = new System.Drawing.Point(535, 319);
+            this.txtFName.Location = new System.Drawing.Point(538, 367);
             this.txtFName.Name = "txtFName";
-            this.txtFName.Size = new System.Drawing.Size(166, 19);
+            this.txtFName.Size = new System.Drawing.Size(166, 16);
             this.txtFName.TabIndex = 24;
             // 
             // txtFOccupation
             // 
-            this.txtFOccupation.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtFOccupation.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtFOccupation.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtFOccupation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFOccupation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtFOccupation.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtFOccupation.Location = new System.Drawing.Point(535, 367);
+            this.txtFOccupation.Location = new System.Drawing.Point(538, 415);
             this.txtFOccupation.Name = "txtFOccupation";
-            this.txtFOccupation.Size = new System.Drawing.Size(166, 19);
+            this.txtFOccupation.Size = new System.Drawing.Size(166, 16);
             this.txtFOccupation.TabIndex = 25;
             // 
             // dtpBirthday
             // 
             this.dtpBirthday.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpBirthday.Location = new System.Drawing.Point(407, 248);
+            this.dtpBirthday.Location = new System.Drawing.Point(410, 296);
             this.dtpBirthday.Name = "dtpBirthday";
             this.dtpBirthday.Size = new System.Drawing.Size(115, 22);
             this.dtpBirthday.TabIndex = 26;
@@ -345,19 +346,20 @@
             // 
             // txtAddress
             // 
-            this.txtAddress.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtAddress.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtAddress.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtAddress.Location = new System.Drawing.Point(404, 211);
+            this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(191, 19);
+            this.txtAddress.Size = new System.Drawing.Size(191, 65);
             this.txtAddress.TabIndex = 28;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(302, 255);
+            this.label3.Location = new System.Drawing.Point(305, 303);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 29;
@@ -367,17 +369,18 @@
             // 
             this.BtnChangePss.FlatAppearance.BorderSize = 0;
             this.BtnChangePss.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnChangePss.Location = new System.Drawing.Point(349, 419);
+            this.BtnChangePss.Location = new System.Drawing.Point(352, 467);
             this.BtnChangePss.Name = "BtnChangePss";
             this.BtnChangePss.Size = new System.Drawing.Size(102, 44);
             this.BtnChangePss.TabIndex = 30;
             this.BtnChangePss.Text = "Change Password";
             this.BtnChangePss.UseVisualStyleBackColor = true;
+            this.BtnChangePss.Click += new System.EventHandler(this.BtnChangePss_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(106, 419);
+            this.label1.Location = new System.Drawing.Point(76, 419);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 31;
@@ -385,14 +388,13 @@
             // 
             // txtPass
             // 
-            this.txtPass.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtPass.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtPass.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtPass.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtPass.Location = new System.Drawing.Point(106, 435);
+            this.txtPass.Location = new System.Drawing.Point(76, 435);
             this.txtPass.Name = "txtPass";
-            this.txtPass.PasswordChar = '*';
-            this.txtPass.Size = new System.Drawing.Size(143, 19);
+            this.txtPass.Size = new System.Drawing.Size(143, 16);
             this.txtPass.TabIndex = 32;
             this.txtPass.UseSystemPasswordChar = true;
             // 
@@ -400,17 +402,17 @@
             // 
             this.txtNewPassword.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtNewPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNewPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtNewPassword.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtNewPassword.Location = new System.Drawing.Point(106, 481);
+            this.txtNewPassword.Location = new System.Drawing.Point(76, 481);
             this.txtNewPassword.Name = "txtNewPassword";
-            this.txtNewPassword.Size = new System.Drawing.Size(143, 19);
+            this.txtNewPassword.Size = new System.Drawing.Size(143, 16);
             this.txtNewPassword.TabIndex = 34;
             // 
             // lblNewPass
             // 
             this.lblNewPass.AutoSize = true;
-            this.lblNewPass.Location = new System.Drawing.Point(106, 465);
+            this.lblNewPass.Location = new System.Drawing.Point(76, 465);
             this.lblNewPass.Name = "lblNewPass";
             this.lblNewPass.Size = new System.Drawing.Size(78, 13);
             this.lblNewPass.TabIndex = 33;
@@ -420,17 +422,17 @@
             // 
             this.txtConfirmPassword.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtConfirmPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtConfirmPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConfirmPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtConfirmPassword.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtConfirmPassword.Location = new System.Drawing.Point(106, 525);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(76, 525);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
-            this.txtConfirmPassword.Size = new System.Drawing.Size(143, 19);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(143, 16);
             this.txtConfirmPassword.TabIndex = 36;
             // 
             // lblConfirmPass
             // 
             this.lblConfirmPass.AutoSize = true;
-            this.lblConfirmPass.Location = new System.Drawing.Point(106, 509);
+            this.lblConfirmPass.Location = new System.Drawing.Point(76, 509);
             this.lblConfirmPass.Name = "lblConfirmPass";
             this.lblConfirmPass.Size = new System.Drawing.Size(91, 13);
             this.lblConfirmPass.TabIndex = 35;
@@ -450,8 +452,7 @@
             // pbxPfp
             // 
             this.pbxPfp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pbxPfp.ImageLocation = "C:\\Users\\Xander\\Documents\\School\\Learning Management and Academic Monitoring syst" +
-    "em\\profile.png";
+            this.pbxPfp.ImageLocation = "";
             this.pbxPfp.InitialImage = global::Learning_Management_and_Academic_Monitoring_system.Properties.Resources.profile;
             this.pbxPfp.Location = new System.Drawing.Point(99, 32);
             this.pbxPfp.Name = "pbxPfp";
@@ -460,11 +461,26 @@
             this.pbxPfp.TabIndex = 0;
             this.pbxPfp.TabStop = false;
             // 
+            // chkShowPassword
+            // 
+            this.chkShowPassword.AutoSize = true;
+            this.chkShowPassword.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkShowPassword.FlatAppearance.BorderSize = 0;
+            this.chkShowPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkShowPassword.Location = new System.Drawing.Point(226, 435);
+            this.chkShowPassword.Name = "chkShowPassword";
+            this.chkShowPassword.Size = new System.Drawing.Size(50, 17);
+            this.chkShowPassword.TabIndex = 38;
+            this.chkShowPassword.Text = "Show";
+            this.chkShowPassword.UseVisualStyleBackColor = true;
+            this.chkShowPassword.CheckedChanged += new System.EventHandler(this.chkShowPassword_CheckedChanged_1);
+            // 
             // Profile_Editable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 604);
+            this.Controls.Add(this.chkShowPassword);
             this.Controls.Add(this.BtnRemovePfp);
             this.Controls.Add(this.txtConfirmPassword);
             this.Controls.Add(this.lblConfirmPass);
@@ -552,5 +568,6 @@
         private System.Windows.Forms.TextBox txtConfirmPassword;
         private System.Windows.Forms.Label lblConfirmPass;
         private System.Windows.Forms.Button BtnRemovePfp;
+        private System.Windows.Forms.CheckBox chkShowPassword;
     }
 }

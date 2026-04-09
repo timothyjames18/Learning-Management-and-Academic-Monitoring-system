@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +20,46 @@ namespace Learning_Management_and_Academic_Monitoring_system
         public LoginForm()
         {
             InitializeComponent();
+            ApplyRoundedCorners(20);
         }
 
+        private void ApplyRoundedCorners(int radius = 20)
+        {
+            this.FormBorderStyle = FormBorderStyle.None;
+
+            GraphicsPath path = AddRoundedRectangle(this.ClientRectangle, radius);
+            this.Region = new Region(path);
+
+            this.ShowInTaskbar = true;
+        }
+        private GraphicsPath AddRoundedRectangle(Rectangle rect, int radius)
+        {
+            int diameter = radius * 2;
+            Size size = new Size(diameter, diameter);
+            Rectangle arc = new Rectangle(rect.Location, size);
+            GraphicsPath path = new GraphicsPath();
+
+            if (radius == 0)
+            {
+                path.AddRectangle(rect);
+                return path;
+            }
+
+            // Top-left arc
+            path.AddArc(arc, 180, 90);
+            // Top-right arc
+            arc.X = rect.Right - diameter;
+            path.AddArc(arc, 270, 90);
+            // Bottom-right arc  
+            arc.Y = rect.Bottom - diameter;
+            path.AddArc(arc, 0, 90);
+            // Bottom-left arc
+            arc.X = rect.Left;
+            path.AddArc(arc, 90, 90);
+
+            path.CloseFigure();
+            return path;
+        }
         private void btnLogin_Click(object sender, EventArgs e)
         {
             lblDebug.Text = "Checking credentials...";
@@ -74,7 +113,7 @@ namespace Learning_Management_and_Academic_Monitoring_system
                                         break;
                                 }
 
-                                this.Hide();  // Hide login form
+                                this.Hide();
                                 return;
                             }
                             else
@@ -100,7 +139,7 @@ namespace Learning_Management_and_Academic_Monitoring_system
         "Exit Application",
         MessageBoxButtons.YesNo,
         MessageBoxIcon.Question,
-        MessageBoxDefaultButton.Button2  // No is default
+        MessageBoxDefaultButton.Button2
     );
 
             if (result == DialogResult.Yes)

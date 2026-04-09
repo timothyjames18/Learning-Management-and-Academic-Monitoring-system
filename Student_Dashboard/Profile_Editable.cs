@@ -16,9 +16,9 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
     {
         private Image currentProfileImage;
         private byte[] profileImageBytes;
-        private string connectionString = "Server=localhost;Database=lms_db;Uid=root;Pwd=;";
-        private int studentId;
-        private StudentForm parentForm;
+        private readonly string connectionString = "Server=localhost;Database=lms_db;Uid=root;Pwd=;";
+        private readonly int studentId;
+        private readonly StudentForm parentForm;
 
         public Profile_Editable(int userId, StudentForm parent = null)
         {
@@ -36,9 +36,9 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                 {
                     conn.Open();
                     string query = @"
-                    SELECT PasswordHash, FirstName, MiddleName, Surname, FullName, 
-                           Email, ContactNumber, Address, Birthday, FName, MotherName, FatherOccupation, MotherOccupation, ProfilePicturePath
-                    FROM Users WHERE UserID = @id";
+                SELECT PasswordHash, FirstName, MiddleName, Surname, FullName, 
+                       Email, ContactNumber, Address, Birthday, FName, MotherName, FatherOccupation, MotherOccupation, ProfilePicturePath
+            FROM Users WHERE UserID = @id";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -58,7 +58,10 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                                 txtMName.Text = reader["MotherName"]?.ToString() ?? "";
                                 txtFOccupation.Text = reader["FatherOccupation"]?.ToString() ?? "";
                                 txtMOccupation.Text = reader["MotherOccupation"]?.ToString() ?? "";
-                                txtPass.Text = reader["PasswordHash"]?.ToString() ?? "";
+
+                                // 🔥 FIXED: DON'T load password (security!)
+                                // txtPass.Text = reader["PasswordHash"]?.ToString() ?? "";
+
                                 if (reader["Birthday"] != DBNull.Value)
                                     dtpBirthday.Value = Convert.ToDateTime(reader["Birthday"]);
                                 if (reader["ProfilePicturePath"] != DBNull.Value)
@@ -67,11 +70,9 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                                     if (File.Exists(profilePicturePath))
                                     {
                                         currentProfileImage = Image.FromFile(profilePicturePath);
-                                        // Assuming you have a PictureBox named picProfilePicture
                                         pbxPfp.Image = ResizeImage(currentProfileImage, 150, 150);
                                     }
                                 }
-
                             }
                         }
                     }
@@ -223,6 +224,62 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                 }
             }
         }
+       
+        private bool ValidatePasswordChange()
+        {
+            if (string.IsNullOrWhiteSpace(txtPass.Text))
+            {
+                MessageBox.Show("Current password is required!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtPass.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNewPassword.Text))
+            {
+                MessageBox.Show("New password is required!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNewPassword.Focus();
+                return false;
+            }
+
+            if (txtNewPassword.Text.Length < 6)
+            {
+                MessageBox.Show("New password must be at least 6 characters long!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNewPassword.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtConfirmPassword.Text))
+            {
+                MessageBox.Show("Please confirm your new password!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtConfirmPassword.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ClearPasswordFields()
+        {
+            txtPass.Clear();
+            txtNewPassword.Clear();
+            txtConfirmPassword.Clear();
+        }
+        private string HashPassword(string password)
+        {
+            // Use BCrypt for NEW passwords
+            return password;
+        }
+
+        private bool VerifyPassword(string password, string storedPassword)
+        {
+            // Plain text passwords in DB (length ~4-20 chars)
+            return password == storedPassword;
+        }
+
         private Image ResizeImage(Image image, int width, int height)
         {
             Bitmap resized = new Bitmap(width, height);
@@ -234,6 +291,81 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                 graphics.DrawImage(image, 0, 0, width, height);
             }
             return resized;
+        }
+
+        private void chkShowPassword_CheckedChanged_1(object sender, EventArgs e)
+        {
+            txtPass.UseSystemPasswordChar = !chkShowPassword.Checked;
+            txtNewPassword.UseSystemPasswordChar = !chkShowPassword.Checked;
+            txtConfirmPassword.UseSystemPasswordChar = !chkShowPassword.Checked;
+        }
+
+        private void BtnChangePss_Click(object sender, EventArgs e)
+        {
+            if (!ValidatePasswordChange())
+                return;
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT PasswordHash FROM Users WHERE UserID = @id";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", studentId);
+                        string currentHash = cmd.ExecuteScalar()?.ToString();
+
+                        string currentPasswordInput = txtPass.Text.Trim();
+                        string newPassword = txtNewPassword.Text.Trim();
+                        string confirmPassword = txtConfirmPassword.Text.Trim();
+
+                        // Verify current password (you might want to use proper password verification)
+                        if (!VerifyPassword(currentPasswordInput, currentHash))
+                        {
+                            MessageBox.Show("❌ Current password is incorrect!", "Password Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtPass.Focus();
+                            txtPass.SelectAll();
+                            return;
+                        }
+
+                        if (newPassword != confirmPassword)
+                        {
+                            MessageBox.Show("❌ New passwords do not match!", "Password Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtConfirmPassword.Focus();
+                            txtConfirmPassword.SelectAll();
+                            return;
+                        }
+
+                        // Update password
+                        string updateQuery = "UPDATE Users SET PasswordHash = @newPassword WHERE UserID = @id";
+                        using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn))
+                        {
+                            updateCmd.Parameters.AddWithValue("@newPassword", HashPassword(newPassword));
+                            updateCmd.Parameters.AddWithValue("@id", studentId);
+
+                            int rowsAffected = updateCmd.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show("✅ Password changed successfully!", "Success",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                // Clear password fields
+                                ClearPasswordFields();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Password change failed: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

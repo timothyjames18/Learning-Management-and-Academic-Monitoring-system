@@ -20,9 +20,9 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
     {
         private StudentForm parentForm;
         public void SetParentForm(StudentForm parent)
-    {
-        parentForm = parent;
-    }
+        {
+            parentForm = parent;
+        }
 
         private string connectionString = "Server=localhost;Database=lms_db;Uid=root;Pwd=;";
         private int studentId;
@@ -122,7 +122,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
 
         private void BtnProfEdit_Click_1(object sender, EventArgs e)
         {
-            if (parentForm != null)
+            if (parentForm != null) 
             {
                 // Switch to editable version
                 parentForm.OpenChildForm(new Profile_Editable(studentId, parentForm), null);

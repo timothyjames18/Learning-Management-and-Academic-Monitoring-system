@@ -176,132 +176,132 @@
             // 
             this.txtFullName.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtFullName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtFullName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtFullName.Location = new System.Drawing.Point(404, 63);
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.ReadOnly = true;
-            this.txtFullName.Size = new System.Drawing.Size(191, 19);
+            this.txtFullName.Size = new System.Drawing.Size(191, 16);
             this.txtFullName.TabIndex = 15;
             // 
             // txtFirstName
             // 
             this.txtFirstName.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtFirstName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtFirstName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtFirstName.Location = new System.Drawing.Point(404, 98);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.ReadOnly = true;
-            this.txtFirstName.Size = new System.Drawing.Size(191, 19);
+            this.txtFirstName.Size = new System.Drawing.Size(191, 16);
             this.txtFirstName.TabIndex = 16;
             // 
             // txtMiddleName
             // 
             this.txtMiddleName.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtMiddleName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMiddleName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMiddleName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtMiddleName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtMiddleName.Location = new System.Drawing.Point(404, 136);
             this.txtMiddleName.Name = "txtMiddleName";
             this.txtMiddleName.ReadOnly = true;
-            this.txtMiddleName.Size = new System.Drawing.Size(191, 19);
+            this.txtMiddleName.Size = new System.Drawing.Size(191, 16);
             this.txtMiddleName.TabIndex = 17;
             // 
             // txtSurname
             // 
             this.txtSurname.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtSurname.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtSurname.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtSurname.Location = new System.Drawing.Point(404, 171);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.ReadOnly = true;
-            this.txtSurname.Size = new System.Drawing.Size(191, 19);
+            this.txtSurname.Size = new System.Drawing.Size(191, 16);
             this.txtSurname.TabIndex = 18;
             // 
             // txtStatus
             // 
             this.txtStatus.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtStatus.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtStatus.Location = new System.Drawing.Point(404, 27);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(191, 19);
+            this.txtStatus.Size = new System.Drawing.Size(191, 16);
             this.txtStatus.TabIndex = 19;
             // 
             // txtPhone
             // 
             this.txtPhone.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtPhone.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtPhone.Location = new System.Drawing.Point(94, 304);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.ReadOnly = true;
-            this.txtPhone.Size = new System.Drawing.Size(143, 19);
+            this.txtPhone.Size = new System.Drawing.Size(143, 16);
             this.txtPhone.TabIndex = 20;
             // 
             // txtEmail
             // 
             this.txtEmail.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtEmail.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtEmail.Location = new System.Drawing.Point(94, 359);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.ReadOnly = true;
-            this.txtEmail.Size = new System.Drawing.Size(143, 19);
+            this.txtEmail.Size = new System.Drawing.Size(143, 16);
             this.txtEmail.TabIndex = 21;
             // 
             // txtMName
             // 
             this.txtMName.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtMName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtMName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtMName.Location = new System.Drawing.Point(301, 359);
             this.txtMName.Name = "txtMName";
             this.txtMName.ReadOnly = true;
-            this.txtMName.Size = new System.Drawing.Size(166, 19);
+            this.txtMName.Size = new System.Drawing.Size(166, 16);
             this.txtMName.TabIndex = 22;
             // 
             // txtMOccupation
             // 
             this.txtMOccupation.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtMOccupation.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtMOccupation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMOccupation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtMOccupation.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtMOccupation.Location = new System.Drawing.Point(301, 407);
             this.txtMOccupation.Name = "txtMOccupation";
             this.txtMOccupation.ReadOnly = true;
-            this.txtMOccupation.Size = new System.Drawing.Size(166, 19);
+            this.txtMOccupation.Size = new System.Drawing.Size(166, 16);
             this.txtMOccupation.TabIndex = 23;
             // 
             // txtFName
             // 
             this.txtFName.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtFName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtFName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtFName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtFName.Location = new System.Drawing.Point(535, 359);
             this.txtFName.Name = "txtFName";
             this.txtFName.ReadOnly = true;
-            this.txtFName.Size = new System.Drawing.Size(166, 19);
+            this.txtFName.Size = new System.Drawing.Size(166, 16);
             this.txtFName.TabIndex = 24;
             // 
             // txtFOccupation
             // 
             this.txtFOccupation.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtFOccupation.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtFOccupation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFOccupation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtFOccupation.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtFOccupation.Location = new System.Drawing.Point(535, 407);
             this.txtFOccupation.Name = "txtFOccupation";
             this.txtFOccupation.ReadOnly = true;
-            this.txtFOccupation.Size = new System.Drawing.Size(166, 19);
+            this.txtFOccupation.Size = new System.Drawing.Size(166, 16);
             this.txtFOccupation.TabIndex = 25;
             // 
             // dtpBirthday
@@ -326,7 +326,7 @@
             // 
             this.txtAddress.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtAddress.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtAddress.Location = new System.Drawing.Point(404, 211);
             this.txtAddress.Multiline = true;
@@ -357,13 +357,13 @@
             // 
             this.txtPass.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtPass.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtPass.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtPass.Location = new System.Drawing.Point(94, 407);
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
             this.txtPass.ReadOnly = true;
-            this.txtPass.Size = new System.Drawing.Size(143, 19);
+            this.txtPass.Size = new System.Drawing.Size(143, 16);
             this.txtPass.TabIndex = 32;
             this.txtPass.UseSystemPasswordChar = true;
             // 

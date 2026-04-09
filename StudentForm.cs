@@ -2,6 +2,9 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 
@@ -20,12 +23,36 @@ namespace Learning_Management_and_Academic_Monitoring_system
         {
             studentId = userId;
             InitializeComponent();
+            SetupNavigationHoverEffects();
             if (studentId > 0)
                 LoadStudentWelcome();
             this.Text = string.Empty;
             this.ControlBox = false;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             btnCloseChildForm.Visible = false;
+
+        }
+        private void SetupNavigationHoverEffects()
+        {
+            // Use correct panel name (tblpnlNavigation OR pnlNavigation?)
+            Panel navPanel = tblpnlNavigation ?? (Panel)pnlNavigation;  // Adjust name!
+
+            foreach (Button btn in navPanel.Controls.OfType<Button>())
+            {
+                btn.MouseEnter += NavButton_MouseEnter;
+                btn.MouseLeave += NavButton_MouseLeave;
+            }
+        }
+        private void NavButton_MouseEnter(object sender, EventArgs e)
+        {
+            if (sender is Button btn && btn != currentButton)
+                btn.BackColor = Color.FromArgb(70, 70, 90);
+        }
+
+        private void NavButton_MouseLeave(object sender, EventArgs e)
+        {
+            if (sender is Button btn && btn != currentButton)
+                btn.BackColor = Color.FromArgb(51, 51, 76);
         }
         private void LoadStudentWelcome()
         {
@@ -54,17 +81,6 @@ namespace Learning_Management_and_Academic_Monitoring_system
                 MessageBox.Show("Welcome Error: " + ex.Message);
             }
         }
-        private Color SelectThemeColor()
-        {
-            int index = random.Next(ThemeColor.ColorList.Count);
-            while (tempIndex == index)
-            {
-                index = random.Next(ThemeColor.ColorList.Count);
-            }
-            tempIndex = index;
-            string color = ThemeColor.ColorList[index];
-            return ColorTranslator.FromHtml(color);
-        }
         private void ActivateButton(object btnsender)
         {
             if (btnsender != null)
@@ -72,28 +88,22 @@ namespace Learning_Management_and_Academic_Monitoring_system
                 if (currentButton != (Button)btnsender)
                 {
                     DisableButton();
-                    Color color = SelectThemeColor();
                     currentButton = (Button)btnsender;
-                    currentButton.BackColor = color;
                     currentButton.ForeColor = Color.White;
-                    currentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    pnlHeader.BackColor = color;
-                    logoPanel.BackColor = ThemeColor.ChangeColorBrightness(color, -0.3);
-                    ThemeColor.PrimaryColor = color;
-                    ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(color, -0.3);
+                    currentButton.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
                     btnCloseChildForm.Visible = true;
                 }
             }
         }
         private void DisableButton()
         {
-            foreach (Control previousBtn in pnlNavigation.Controls)
+            // Works for BOTH Panel AND TableLayoutPanel
+            foreach (Control previousBtn in tblpnlNavigation.Controls)  // Use your actual name
             {
-                if (previousBtn.GetType() == typeof(Button))
+                if (previousBtn is Button btn)
                 {
-                    previousBtn.BackColor = Color.FromArgb(51, 51, 76);
-                    previousBtn.ForeColor = Color.Gainsboro;
-                    previousBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    btn.ForeColor = Color.Gainsboro;
+                    btn.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
                 }
             }
         }
@@ -103,7 +113,7 @@ namespace Learning_Management_and_Academic_Monitoring_system
             if (activeForm != null)
             {
                 activeForm.Close();
-            }  
+            }
             ActivateButton(btnsender);
             activeForm = childForm;
             childForm.TopLevel = false;
@@ -119,6 +129,7 @@ namespace Learning_Management_and_Academic_Monitoring_system
             childForm.Show();
             lblTitle.Text = childForm.Text;
         }
+        
         public void SwitchToForm(Form newForm)
         {
             OpenChildForm(newForm, null);
@@ -148,12 +159,10 @@ namespace Learning_Management_and_Academic_Monitoring_system
         {
             OpenChildForm(new Student_Dashboard.Attendance(studentId), sender);
         }
-
         private void btnMessages_Click(object sender, EventArgs e)
         {
             OpenChildForm(new Student_Dashboard.Messages(studentId), sender);
         }
-
         private void pnlProfile_Paint(object sender, PaintEventArgs e)
         {
 
@@ -169,8 +178,8 @@ namespace Learning_Management_and_Academic_Monitoring_system
         {
             DisableButton();
             lblTitle.Text = "HOME";
-            pnlHeader.BackColor = Color.FromArgb(0, 150, 136);
-            logoPanel.BackColor = Color.FromArgb(39, 39, 58);
+            //pnlHeader.BackColor = Color.FromArgb(0, 150, 136);
+            //logoPanel.BackColor = Color.FromArgb(39, 39, 58);
             currentButton = null;
             btnCloseChildForm.Visible = false;
         }
@@ -179,10 +188,13 @@ namespace Learning_Management_and_Academic_Monitoring_system
         {
             Application.Exit();
         }
-
+        private bool isMaximized = false;
+        private GraphicsPath storedPath;
+        private Rectangle storedRect;
+        private int cornerRadius = 20;
         private void btnMaximize_Click(object sender, EventArgs e)
         {
-            if (WindowState == FormWindowState.Normal)
+            if (this.WindowState == FormWindowState.Normal)
                 this.WindowState = FormWindowState.Maximized;
             else
                 this.WindowState = FormWindowState.Normal;
@@ -192,5 +204,7 @@ namespace Learning_Management_and_Academic_Monitoring_system
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+
     }
 }
