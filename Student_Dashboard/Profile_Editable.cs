@@ -59,9 +59,6 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                                 txtFOccupation.Text = reader["FatherOccupation"]?.ToString() ?? "";
                                 txtMOccupation.Text = reader["MotherOccupation"]?.ToString() ?? "";
 
-                                // 🔥 FIXED: DON'T load password (security!)
-                                // txtPass.Text = reader["PasswordHash"]?.ToString() ?? "";
-
                                 if (reader["Birthday"] != DBNull.Value)
                                     dtpBirthday.Value = Convert.ToDateTime(reader["Birthday"]);
                                 if (reader["ProfilePicturePath"] != DBNull.Value)
@@ -202,16 +199,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                         // Load and resize image
                         currentProfileImage = Image.FromFile(openFileDialog.FileName);
                         Image resizedImage = ResizeImage(currentProfileImage, 150, 150);
-
-                        // Display in PictureBox
                         pbxPfp.Image = resizedImage;
-
-                        // Convert to bytes for database
-                        using (MemoryStream ms = new MemoryStream())
-                        {
-                            resizedImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            profileImageBytes = ms.ToArray();
-                        }
 
                         MessageBox.Show("Profile picture selected successfully!", "Success",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
