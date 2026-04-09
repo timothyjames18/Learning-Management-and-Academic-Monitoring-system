@@ -248,5 +248,8 @@
   <ItemGroup>
     <None Include="profile.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ProfilePicture\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

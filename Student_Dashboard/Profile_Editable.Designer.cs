@@ -64,7 +64,6 @@
             this.lblNewPass = new System.Windows.Forms.Label();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
             this.lblConfirmPass = new System.Windows.Forms.Label();
-            this.BtnRemovePfp = new System.Windows.Forms.Button();
             this.pbxPfp = new System.Windows.Forms.PictureBox();
             this.chkShowPassword = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPfp)).BeginInit();
@@ -438,17 +437,6 @@
             this.lblConfirmPass.TabIndex = 35;
             this.lblConfirmPass.Text = "Confirm Password";
             // 
-            // BtnRemovePfp
-            // 
-            this.BtnRemovePfp.FlatAppearance.BorderSize = 0;
-            this.BtnRemovePfp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnRemovePfp.Location = new System.Drawing.Point(94, 236);
-            this.BtnRemovePfp.Name = "BtnRemovePfp";
-            this.BtnRemovePfp.Size = new System.Drawing.Size(155, 34);
-            this.BtnRemovePfp.TabIndex = 37;
-            this.BtnRemovePfp.Text = "Remove Profile Picture";
-            this.BtnRemovePfp.UseVisualStyleBackColor = true;
-            // 
             // pbxPfp
             // 
             this.pbxPfp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -481,7 +469,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 604);
             this.Controls.Add(this.chkShowPassword);
-            this.Controls.Add(this.BtnRemovePfp);
             this.Controls.Add(this.txtConfirmPassword);
             this.Controls.Add(this.lblConfirmPass);
             this.Controls.Add(this.txtNewPassword);
@@ -567,7 +554,6 @@
         private System.Windows.Forms.Label lblNewPass;
         private System.Windows.Forms.TextBox txtConfirmPassword;
         private System.Windows.Forms.Label lblConfirmPass;
-        private System.Windows.Forms.Button BtnRemovePfp;
         private System.Windows.Forms.CheckBox chkShowPassword;
     }
 }

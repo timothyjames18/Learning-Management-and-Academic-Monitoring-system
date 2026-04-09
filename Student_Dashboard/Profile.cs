@@ -128,6 +128,16 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                 parentForm.OpenChildForm(new Profile_Editable(studentId, parentForm), null);
             }
         }
+
+        private void lblphone_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPhone_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

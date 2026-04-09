@@ -38,7 +38,8 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                     string query = @"
                 SELECT PasswordHash, FirstName, MiddleName, Surname, FullName, 
                        Email, ContactNumber, Address, Birthday, FName, MotherName, FatherOccupation, MotherOccupation, ProfilePicturePath
-            FROM Users WHERE UserID = @id";
+                FROM Users 
+                WHERE UserID = @id";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -47,6 +48,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                         {
                             if (reader.Read())
                             {
+                                // Load text fields
                                 txtFullName.Text = reader["FullName"]?.ToString() ?? "";
                                 txtFirstName.Text = reader["FirstName"]?.ToString() ?? "";
                                 txtMiddleName.Text = reader["MiddleName"]?.ToString() ?? "";
@@ -61,14 +63,18 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
 
                                 if (reader["Birthday"] != DBNull.Value)
                                     dtpBirthday.Value = Convert.ToDateTime(reader["Birthday"]);
-                                if (reader["ProfilePicturePath"] != DBNull.Value)
+
+                                // Load profile picture
+                                string profilePicturePath = reader["ProfilePicturePath"]?.ToString();
+                                if (!string.IsNullOrEmpty(profilePicturePath) && File.Exists(profilePicturePath))
                                 {
-                                    string profilePicturePath = reader["ProfilePicturePath"].ToString();
-                                    if (File.Exists(profilePicturePath))
-                                    {
-                                        currentProfileImage = Image.FromFile(profilePicturePath);
-                                        pbxPfp.Image = ResizeImage(currentProfileImage, 150, 150);
-                                    }
+                                    currentProfileImage = Image.FromFile(profilePicturePath);
+                                    pbxPfp.Image = ResizeImage(currentProfileImage, 150, 150);
+                                }
+                                else
+                                {
+                                    // Load default image if no picture exists
+                                    pbxPfp.Image = Image.FromFile(Path.Combine(Application.StartupPath, "ProfilePicture", "default.png"));
                                 }
                             }
                         }
@@ -91,16 +97,41 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
 
             try
             {
+                // Only save the profile image if one is selected
+                string profilePath = null;
+                if (currentProfileImage != null)
+                {
+                    string folder = Path.Combine(Application.StartupPath, "ProfilePicture");
+                    if (!Directory.Exists(folder))
+                        Directory.CreateDirectory(folder);
+
+                    string fileName = $"student_{studentId}.jpg"; // unique filename
+                    profilePath = Path.Combine(folder, fileName);
+
+                    // Save the image to the folder
+                    currentProfileImage.Save(profilePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
+
                     string query = @"
-                        UPDATE Users SET 
-                            Fullname = @fullName, FirstName = @firstName, MiddleName = @middleName, Surname = @surname,
-                            Email = @email, ContactNumber = @phone, Address = @address,
-                            Birthday = @birthday, FName = @fname, MotherName = @mname,
-                            FatherOccupation = @foccupation, MotherOccupation = @moccupation
-                        WHERE UserID = @id";
+                UPDATE Users SET 
+                    Fullname = @fullName,
+                    FirstName = @firstName,
+                    MiddleName = @middleName,
+                    Surname = @surname,
+                    Email = @email,
+                    ContactNumber = @phone,
+                    Address = @address,
+                    Birthday = @birthday,
+                    FName = @fname,
+                    MotherName = @mname,
+                    FatherOccupation = @foccupation,
+                    MotherOccupation = @moccupation,
+                    ProfilePicturePath = @profilePath
+                WHERE UserID = @id";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -116,6 +147,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                         cmd.Parameters.AddWithValue("@mname", txtMName.Text.Trim());
                         cmd.Parameters.AddWithValue("@foccupation", txtFOccupation.Text.Trim());
                         cmd.Parameters.AddWithValue("@moccupation", txtMOccupation.Text.Trim());
+                        cmd.Parameters.AddWithValue("@profilePath", profilePath); // saves path only if image exists
                         cmd.Parameters.AddWithValue("@id", studentId);
 
                         int rowsAffected = cmd.ExecuteNonQuery();
@@ -196,8 +228,10 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                 {
                     try
                     {
-                        // Load and resize image
+                        // Load original image
                         currentProfileImage = Image.FromFile(openFileDialog.FileName);
+
+                        // Resize for display
                         Image resizedImage = ResizeImage(currentProfileImage, 150, 150);
                         pbxPfp.Image = resizedImage;
 
