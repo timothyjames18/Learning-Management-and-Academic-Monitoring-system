@@ -44,7 +44,7 @@
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtMiddleName = new System.Windows.Forms.TextBox();
             this.txtSurname = new System.Windows.Forms.TextBox();
-            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.txtUsrnm = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtMName = new System.Windows.Forms.TextBox();
@@ -157,9 +157,9 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Location = new System.Drawing.Point(298, 37);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(37, 13);
+            this.lblStatus.Size = new System.Drawing.Size(55, 13);
             this.lblStatus.TabIndex = 11;
-            this.lblStatus.Text = "Status";
+            this.lblStatus.Text = "Username";
             // 
             // BtnProfEdit
             // 
@@ -221,17 +221,17 @@
             this.txtSurname.Size = new System.Drawing.Size(191, 16);
             this.txtSurname.TabIndex = 18;
             // 
-            // txtStatus
+            // txtUsrnm
             // 
-            this.txtStatus.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.txtStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtStatus.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtStatus.Location = new System.Drawing.Point(401, 32);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(191, 16);
-            this.txtStatus.TabIndex = 19;
+            this.txtUsrnm.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.txtUsrnm.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUsrnm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtUsrnm.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtUsrnm.Location = new System.Drawing.Point(401, 32);
+            this.txtUsrnm.Name = "txtUsrnm";
+            this.txtUsrnm.ReadOnly = true;
+            this.txtUsrnm.Size = new System.Drawing.Size(191, 16);
+            this.txtUsrnm.TabIndex = 19;
             // 
             // txtPhone
             // 
@@ -371,7 +371,7 @@
             // 
             // picProfilePicture
             // 
-            this.picProfilePicture.InitialImage = global::Learning_Management_and_Academic_Monitoring_system.Properties.Resources.profile;
+            this.picProfilePicture.InitialImage = null;
             this.picProfilePicture.Location = new System.Drawing.Point(91, 37);
             this.picProfilePicture.Name = "picProfilePicture";
             this.picProfilePicture.Size = new System.Drawing.Size(155, 155);
@@ -396,7 +396,7 @@
             this.Controls.Add(this.txtMName);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtPhone);
-            this.Controls.Add(this.txtStatus);
+            this.Controls.Add(this.txtUsrnm);
             this.Controls.Add(this.txtSurname);
             this.Controls.Add(this.txtMiddleName);
             this.Controls.Add(this.txtFirstName);
@@ -444,7 +444,7 @@
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtMiddleName;
         private System.Windows.Forms.TextBox txtSurname;
-        private System.Windows.Forms.TextBox txtStatus;
+        private System.Windows.Forms.TextBox txtUsrnm;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtMName;

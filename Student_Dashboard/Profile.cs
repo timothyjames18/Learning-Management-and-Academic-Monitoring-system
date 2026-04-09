@@ -18,6 +18,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
 {
     public partial class Profile : Form
     {
+        private Image currentProfileImage; 
         private StudentForm parentForm;
         public void SetParentForm(StudentForm parent)
         {
@@ -51,7 +52,15 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             catch (Exception ex)
             {
                 // Fallback to default image if there's an error
-                picProfilePicture.Image = Image.FromFile(@"C:\Users\Xander\Documents\School\Learning Management and Academic Monitoring system\profile.png");
+                string fallbackPath = @"C:\Users\Xander\Documents\School\Learning Management and Academic Monitoring system\profile.png";
+
+                if (File.Exists(fallbackPath))
+                {
+                    using (var temp = Image.FromFile(fallbackPath))
+                    {
+                        picProfilePicture.Image = new Bitmap(temp);
+                    }
+                }
                 Console.WriteLine($"Profile picture load error: {ex.Message}");
             }
         }
@@ -77,8 +86,8 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                 {
                     conn.Open();
                     string query = @"
-                    SELECT PasswordHash, FirstName, MiddleName, Surname, FullName, 
-                           Email, ContactNumber, Address, Birthday, FName, MotherName, FatherOccupation, MotherOccupation
+                    SELECT Username, PasswordHash, FirstName, MiddleName, Surname, FullName, 
+                           Email, ContactNumber, Address, Birthday, FName, MotherName, FatherOccupation, MotherOccupation, ProfilePicturePath
                     FROM Users WHERE UserID = @id";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
@@ -88,6 +97,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                         {
                             if (reader.Read())
                             {
+                                txtUsrnm.Text = reader["Username"]?.ToString() ?? "";
                                 txtFullName.Text = reader["FullName"]?.ToString() ?? "";
                                 txtFirstName.Text = reader["FirstName"]?.ToString() ?? "";
                                 txtMiddleName.Text = reader["MiddleName"]?.ToString() ?? "";
@@ -100,10 +110,41 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                                 txtFOccupation.Text = reader["FatherOccupation"]?.ToString() ?? "";
                                 txtMOccupation.Text = reader["MotherOccupation"]?.ToString() ?? "";
                                 txtPass.Text = reader["PasswordHash"]?.ToString() ?? "";
+
                                 if (reader["Birthday"] != DBNull.Value)
                                     dtpBirthday.Value = Convert.ToDateTime(reader["Birthday"]);
 
-                                LoadProfilePicture(reader);
+                                string profilePicturePath = reader["ProfilePicturePath"]?.ToString();
+
+                                if (!string.IsNullOrEmpty(profilePicturePath) && File.Exists(profilePicturePath))
+                                {
+                                    // 🔥 Load without locking file
+                                    using (var temp = Image.FromFile(profilePicturePath))
+                                    {
+                                        currentProfileImage = new Bitmap(temp);
+                                    }
+
+                                    if (picProfilePicture.Image != null)
+                                    {
+                                        picProfilePicture.Image.Dispose();
+                                        picProfilePicture.Image = null;
+                                    }
+
+                                    picProfilePicture.Image = ResizeImage(currentProfileImage, 150, 150);
+                                }
+                                else
+                                {
+                                    // 🔥 Load default image safely (no lock)
+                                    string defaultPath = Path.Combine(Application.StartupPath, "ProfilePicture", "default.png");
+
+                                    if (File.Exists(defaultPath))
+                                    {
+                                        using (var temp = Image.FromFile(defaultPath))
+                                        {
+                                            picProfilePicture.Image = new Bitmap(temp);
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

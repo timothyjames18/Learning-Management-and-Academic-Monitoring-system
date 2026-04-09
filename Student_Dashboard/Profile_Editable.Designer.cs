@@ -46,7 +46,7 @@
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.txtMiddleName = new System.Windows.Forms.TextBox();
             this.txtSurname = new System.Windows.Forms.TextBox();
-            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.txtUsrnm = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtMName = new System.Windows.Forms.TextBox();
@@ -66,6 +66,7 @@
             this.lblConfirmPass = new System.Windows.Forms.Label();
             this.pbxPfp = new System.Windows.Forms.PictureBox();
             this.chkShowPassword = new System.Windows.Forms.CheckBox();
+            this.btnDeletePfp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPfp)).BeginInit();
             this.SuspendLayout();
             // 
@@ -164,9 +165,9 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Location = new System.Drawing.Point(301, 32);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(37, 13);
+            this.lblStatus.Size = new System.Drawing.Size(55, 13);
             this.lblStatus.TabIndex = 11;
-            this.lblStatus.Text = "Status";
+            this.lblStatus.Text = "Username";
             // 
             // BtnProfEdit
             // 
@@ -248,16 +249,16 @@
             this.txtSurname.Size = new System.Drawing.Size(191, 16);
             this.txtSurname.TabIndex = 18;
             // 
-            // txtStatus
+            // txtUsrnm
             // 
-            this.txtStatus.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtStatus.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtStatus.Location = new System.Drawing.Point(404, 27);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(191, 16);
-            this.txtStatus.TabIndex = 19;
+            this.txtUsrnm.BackColor = System.Drawing.SystemColors.Control;
+            this.txtUsrnm.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUsrnm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtUsrnm.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtUsrnm.Location = new System.Drawing.Point(404, 27);
+            this.txtUsrnm.Name = "txtUsrnm";
+            this.txtUsrnm.Size = new System.Drawing.Size(191, 16);
+            this.txtUsrnm.TabIndex = 19;
             // 
             // txtPhone
             // 
@@ -441,7 +442,7 @@
             // 
             this.pbxPfp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbxPfp.ImageLocation = "";
-            this.pbxPfp.InitialImage = global::Learning_Management_and_Academic_Monitoring_system.Properties.Resources.profile;
+            this.pbxPfp.InitialImage = null;
             this.pbxPfp.Location = new System.Drawing.Point(99, 32);
             this.pbxPfp.Name = "pbxPfp";
             this.pbxPfp.Size = new System.Drawing.Size(150, 150);
@@ -463,11 +464,24 @@
             this.chkShowPassword.UseVisualStyleBackColor = true;
             this.chkShowPassword.CheckedChanged += new System.EventHandler(this.chkShowPassword_CheckedChanged_1);
             // 
+            // btnDeletePfp
+            // 
+            this.btnDeletePfp.FlatAppearance.BorderSize = 0;
+            this.btnDeletePfp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeletePfp.Location = new System.Drawing.Point(94, 242);
+            this.btnDeletePfp.Name = "btnDeletePfp";
+            this.btnDeletePfp.Size = new System.Drawing.Size(155, 34);
+            this.btnDeletePfp.TabIndex = 39;
+            this.btnDeletePfp.Text = "Remove Profile Picture";
+            this.btnDeletePfp.UseVisualStyleBackColor = true;
+            this.btnDeletePfp.Click += new System.EventHandler(this.btnDeletePfp_Click);
+            // 
             // Profile_Editable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 604);
+            this.Controls.Add(this.btnDeletePfp);
             this.Controls.Add(this.chkShowPassword);
             this.Controls.Add(this.txtConfirmPassword);
             this.Controls.Add(this.lblConfirmPass);
@@ -486,7 +500,7 @@
             this.Controls.Add(this.txtMName);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtPhone);
-            this.Controls.Add(this.txtStatus);
+            this.Controls.Add(this.txtUsrnm);
             this.Controls.Add(this.txtSurname);
             this.Controls.Add(this.txtMiddleName);
             this.Controls.Add(this.txtFirstName);
@@ -539,7 +553,7 @@
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.TextBox txtMiddleName;
         private System.Windows.Forms.TextBox txtSurname;
-        private System.Windows.Forms.TextBox txtStatus;
+        private System.Windows.Forms.TextBox txtUsrnm;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtMName;
@@ -555,5 +569,6 @@
         private System.Windows.Forms.TextBox txtConfirmPassword;
         private System.Windows.Forms.Label lblConfirmPass;
         private System.Windows.Forms.CheckBox chkShowPassword;
+        private System.Windows.Forms.Button btnDeletePfp;
     }
 }

@@ -20,6 +20,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
         private readonly int studentId;
         private readonly StudentForm parentForm;
 
+
         public Profile_Editable(int userId, StudentForm parent = null)
         {
             studentId = userId;
@@ -27,7 +28,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             InitializeComponent();
             LoadCurrentProfile();
         }
-
+        
         private void LoadCurrentProfile()
         {
             try
@@ -36,7 +37,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                 {
                     conn.Open();
                     string query = @"
-                SELECT PasswordHash, FirstName, MiddleName, Surname, FullName, 
+                SELECT Username, PasswordHash, FirstName, MiddleName, Surname, FullName, 
                        Email, ContactNumber, Address, Birthday, FName, MotherName, FatherOccupation, MotherOccupation, ProfilePicturePath
                 FROM Users 
                 WHERE UserID = @id";
@@ -49,6 +50,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                             if (reader.Read())
                             {
                                 // Load text fields
+                                txtUsrnm.Text = reader["Username"]?.ToString() ?? "";
                                 txtFullName.Text = reader["FullName"]?.ToString() ?? "";
                                 txtFirstName.Text = reader["FirstName"]?.ToString() ?? "";
                                 txtMiddleName.Text = reader["MiddleName"]?.ToString() ?? "";
@@ -68,13 +70,20 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                                 string profilePicturePath = reader["ProfilePicturePath"]?.ToString();
                                 if (!string.IsNullOrEmpty(profilePicturePath) && File.Exists(profilePicturePath))
                                 {
-                                    currentProfileImage = Image.FromFile(profilePicturePath);
+                                    using (var temp = Image.FromFile(profilePicturePath))
+                                    {
+                                        currentProfileImage = new Bitmap(temp);
+                                    }
+
                                     pbxPfp.Image = ResizeImage(currentProfileImage, 150, 150);
                                 }
                                 else
                                 {
                                     // Load default image if no picture exists
-                                    pbxPfp.Image = Image.FromFile(Path.Combine(Application.StartupPath, "ProfilePicture", "default.png"));
+                                    using (var temp = Image.FromFile(Path.Combine(Application.StartupPath, "ProfilePicture", "default.png")))
+                                    {
+                                        pbxPfp.Image = new Bitmap(temp);
+                                    }
                                 }
                             }
                         }
@@ -97,7 +106,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
 
             try
             {
-                // Only save the profile image if one is selected
+                // 🔥 FIXED IMAGE SAVE
                 string profilePath = null;
                 if (currentProfileImage != null)
                 {
@@ -105,65 +114,71 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                     if (!Directory.Exists(folder))
                         Directory.CreateDirectory(folder);
 
-                    string fileName = $"student_{studentId}.jpg"; // unique filename
+                    string fileName = $"student_{studentId}.jpg";
                     profilePath = Path.Combine(folder, fileName);
 
-                    // Save the image to the folder
-                    currentProfileImage.Save(profilePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                }
-
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
-                {
-                    conn.Open();
-
-                    string query = @"
-                UPDATE Users SET 
-                    Fullname = @fullName,
-                    FirstName = @firstName,
-                    MiddleName = @middleName,
-                    Surname = @surname,
-                    Email = @email,
-                    ContactNumber = @phone,
-                    Address = @address,
-                    Birthday = @birthday,
-                    FName = @fname,
-                    MotherName = @mname,
-                    FatherOccupation = @foccupation,
-                    MotherOccupation = @moccupation,
-                    ProfilePicturePath = @profilePath
-                WHERE UserID = @id";
-
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    if (pbxPfp.Image != null)
                     {
-                        cmd.Parameters.AddWithValue("@fullName", txtFullName.Text.Trim());
-                        cmd.Parameters.AddWithValue("@firstName", txtFirstName.Text.Trim());
-                        cmd.Parameters.AddWithValue("@middleName", txtMiddleName.Text.Trim());
-                        cmd.Parameters.AddWithValue("@surname", txtSurname.Text.Trim());
-                        cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
-                        cmd.Parameters.AddWithValue("@phone", txtPhone.Text.Trim());
-                        cmd.Parameters.AddWithValue("@address", txtAddress.Text.Trim());
-                        cmd.Parameters.AddWithValue("@birthday", dtpBirthday.Value.Date);
-                        cmd.Parameters.AddWithValue("@fname", txtFName.Text.Trim());
-                        cmd.Parameters.AddWithValue("@mname", txtMName.Text.Trim());
-                        cmd.Parameters.AddWithValue("@foccupation", txtFOccupation.Text.Trim());
-                        cmd.Parameters.AddWithValue("@moccupation", txtMOccupation.Text.Trim());
-                        cmd.Parameters.AddWithValue("@profilePath", profilePath); // saves path only if image exists
-                        cmd.Parameters.AddWithValue("@id", studentId);
+                        pbxPfp.Image.Dispose();
+                        pbxPfp.Image = null;
+                    }
 
-                        int rowsAffected = cmd.ExecuteNonQuery();
+                    // ✅ SAFE SAVE - Creates copy, avoids lock
+                    using (Bitmap safeCopy = new Bitmap(currentProfileImage.Width, currentProfileImage.Height))
+                    using (Graphics g = Graphics.FromImage(safeCopy))
+                    {
+                        g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                        g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                        g.DrawImage(currentProfileImage, 0, 0);
 
-                        if (rowsAffected > 0)
+                        try
                         {
-                            MessageBox.Show("✅ Profile updated successfully!", "Success",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            GoBackToProfile();
+                            safeCopy.Save(profilePath, System.Drawing.Imaging.ImageFormat.Jpeg);
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            MessageBox.Show("No changes saved!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("SAVE ERROR:\n" + ex.Message + "\n\nPATH:\n" + profilePath);
                         }
                     }
                 }
+
+                // Rest of your database code stays SAME...
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string updateQuery = @"
+                UPDATE Users 
+                SET FirstName=@first, MiddleName=@middle, Surname=@surname, FullName=@full,
+                    Email=@email, ContactNumber=@phone, Address=@address,
+                    Birthday=@birthday, FName=@fname, MotherName=@mname,
+                    FatherOccupation=@focc, MotherOccupation=@mocc, ProfilePicturePath=@pfp
+                WHERE UserID=@id";
+
+                    using (MySqlCommand cmd = new MySqlCommand(updateQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@first", txtFirstName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@middle", txtMiddleName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@surname", txtSurname.Text.Trim());
+                        cmd.Parameters.AddWithValue("@full", txtFullName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
+                        cmd.Parameters.AddWithValue("@phone", txtPhone.Text.Trim());
+                        cmd.Parameters.AddWithValue("@address", txtAddress.Text.Trim());
+                        cmd.Parameters.AddWithValue("@birthday", dtpBirthday.Value);
+                        cmd.Parameters.AddWithValue("@fname", txtFName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@mname", txtMName.Text.Trim());
+                        cmd.Parameters.AddWithValue("@focc", txtFOccupation.Text.Trim());
+                        cmd.Parameters.AddWithValue("@mocc", txtMOccupation.Text.Trim());
+                        cmd.Parameters.AddWithValue("@pfp", profilePath);
+                        cmd.Parameters.AddWithValue("@id", studentId);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("✅ Profile saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // 🔹 Go back to read-only profile
+                GoBackToProfile();
             }
             catch (Exception ex)
             {
@@ -222,26 +237,25 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
-                openFileDialog.Title = "Select Profile Picture";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        // Load original image
-                        currentProfileImage = Image.FromFile(openFileDialog.FileName);
+                        // ✅ FIXED: Create copy immediately
+                        using (Image tempImage = Image.FromFile(openFileDialog.FileName))
+                        {
+                            currentProfileImage = new Bitmap(tempImage); // Independent copy
+                        }
 
-                        // Resize for display
-                        Image resizedImage = ResizeImage(currentProfileImage, 150, 150);
-                        pbxPfp.Image = resizedImage;
+                        // Display resized version
+                        pbxPfp.Image = ResizeImage(currentProfileImage, 150, 150);
 
-                        MessageBox.Show("Profile picture selected successfully!", "Success",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("✅ Profile picture selected!", "Success");
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Error loading image: {ex.Message}", "Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"❌ Error: {ex.Message}");
                     }
                 }
             }
@@ -387,6 +401,44 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             {
                 MessageBox.Show("Password change failed: " + ex.Message, "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDeletePfp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string folder = Path.Combine(Application.StartupPath, "ProfilePicture");
+                string fileName = $"student_{studentId}.jpg";
+                string profilePath = Path.Combine(folder, fileName);
+
+                // 🧹 Dispose current image (VERY IMPORTANT)
+                if (pbxPfp.Image != null)
+                {
+                    pbxPfp.Image.Dispose();
+                    pbxPfp.Image = null;
+                }
+
+                currentProfileImage = null;
+
+                // 🗑 Delete file if exists
+                if (File.Exists(profilePath))
+                {
+                    File.Delete(profilePath);
+                }
+
+                // 🖼 Load default image
+                string defaultPath = Path.Combine(folder, "default.png");
+                if (File.Exists(defaultPath))
+                {
+                    pbxPfp.Image = Image.FromFile(defaultPath);
+                }
+
+                MessageBox.Show("✅ Profile picture deleted!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("❌ Delete failed: " + ex.Message);
             }
         }
     }
