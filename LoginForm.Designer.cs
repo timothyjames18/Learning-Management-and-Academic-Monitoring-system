@@ -65,7 +65,7 @@
             this.lblUser.Location = new System.Drawing.Point(50, 235);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(77, 18);
-            this.lblUser.TabIndex = 3;
+            this.lblUser.TabIndex = 0;
             this.lblUser.Text = "Username";
             // 
             // btnLogin
@@ -80,7 +80,7 @@
             this.btnLogin.Location = new System.Drawing.Point(133, 335);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 38);
-            this.btnLogin.TabIndex = 4;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -93,7 +93,7 @@
             this.lblPass.Location = new System.Drawing.Point(50, 267);
             this.lblPass.Name = "lblPass";
             this.lblPass.Size = new System.Drawing.Size(75, 18);
-            this.lblPass.TabIndex = 5;
+            this.lblPass.TabIndex = 0;
             this.lblPass.Text = "Password";
             // 
             // txtPassword
@@ -103,7 +103,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(162, 20);
-            this.txtPassword.TabIndex = 6;
+            this.txtPassword.TabIndex = 2;
             // 
             // btnExit
             // 
@@ -118,7 +118,7 @@
             this.btnExit.Location = new System.Drawing.Point(299, 12);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(21, 23);
-            this.btnExit.TabIndex = 7;
+            this.btnExit.TabIndex = 5;
             this.btnExit.Text = "X";
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnExit.UseVisualStyleBackColor = false;
@@ -131,14 +131,14 @@
             this.frgtp.Location = new System.Drawing.Point(227, 288);
             this.frgtp.Name = "frgtp";
             this.frgtp.Size = new System.Drawing.Size(68, 13);
-            this.frgtp.TabIndex = 8;
+            this.frgtp.TabIndex = 4;
             this.frgtp.TabStop = true;
             this.frgtp.Text = "Forgot pass?";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(101, 44);
+            this.pictureBox1.Location = new System.Drawing.Point(97, 44);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(145, 145);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
