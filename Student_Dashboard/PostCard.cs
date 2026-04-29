@@ -24,13 +24,25 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
         public PostCard()
         {
             InitializeComponent();
-            // Eliminate flicker when the card is created or repainted
+            // Use double-buffering without UserPaint.
+            // UserPaint transfers ALL painting responsibility to this control,
+            // meaning the background and child controls are never drawn on the
+            // first layout pass — cards appear blank until a button click forces
+            // a repaint.  OptimizedDoubleBuffer alone is enough to prevent flicker
+            // while still letting WinForms paint the background and children normally.
             this.SetStyle(
                 ControlStyles.OptimizedDoubleBuffer |
-                ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.UserPaint,
+                ControlStyles.AllPaintingInWmPaint,
                 true);
+            this.SetStyle(ControlStyles.UserPaint, false);
             this.UpdateStyles();
+        }
+
+        // Ensure the card background colour is always painted, even on the very
+        // first render before any button click triggers a refresh.
+        protected override void OnPaintBackground(System.Windows.Forms.PaintEventArgs e)
+        {
+            e.Graphics.Clear(this.BackColor);
         }
 
         // ── Public API ───────────────────────────────────────────────────────

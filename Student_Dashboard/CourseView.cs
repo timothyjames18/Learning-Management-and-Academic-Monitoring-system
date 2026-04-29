@@ -28,12 +28,14 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
         public CourseView()
         {
             InitializeComponent();
-            // Eliminate flicker on the outer UserControl
+            // Use double-buffering WITHOUT UserPaint.
+            // UserPaint would suppress default background/child painting on the
+            // first render, causing a blank panel until a repaint is triggered.
             this.SetStyle(
                 ControlStyles.OptimizedDoubleBuffer |
-                ControlStyles.AllPaintingInWmPaint |
-                ControlStyles.UserPaint,
+                ControlStyles.AllPaintingInWmPaint,
                 true);
+            this.SetStyle(ControlStyles.UserPaint, false);
             this.UpdateStyles();
 
             // Enable double-buffering on the FlowLayoutPanel via reflection
@@ -158,6 +160,10 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             flowPosts.ResumeLayout(true);
             flowPosts.PerformLayout();
             pnlScroll.PerformLayout();
+            // Force an immediate repaint so the very first frame shows all
+            // postcards fully painted — without this, cards remain invisible
+            // until the next paint cycle (e.g. a button click or mouse-over).
+            flowPosts.Refresh();
         }
 
         private PostCard MakeCard(CoursePostInfo post, int cardWidth)
@@ -269,4 +275,4 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             BackRequested?.Invoke(this, EventArgs.Empty);
         }
     }
-}
+} 
