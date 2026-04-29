@@ -123,13 +123,19 @@ namespace Learning_Management_and_Academic_Monitoring_system
             if (childForm is Profile profileForm)
                 profileForm.SetParentForm(this);
 
+            // Suspend layout so no intermediate repaint fires while we
+            // add, bring-to-front, and show the child — prevents the
+            // one-frame flicker/wipe seen when postcards load.
+            this.pnlDashboard.SuspendLayout();
             this.pnlDashboard.Controls.Add(childForm);
             this.pnlDashboard.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
+            this.pnlDashboard.ResumeLayout(true);
+
             lblTitle.Text = childForm.Text;
         }
-        
+
         public void SwitchToForm(Form newForm)
         {
             OpenChildForm(newForm, null);

@@ -32,196 +32,254 @@
             this.pnlScroll = new System.Windows.Forms.Panel();
             this.flowPosts = new System.Windows.Forms.FlowLayoutPanel();
             this.lblNoPosts = new System.Windows.Forms.Label();
-
             this.pnlHeader.SuspendLayout();
             this.pnlFilterBar.SuspendLayout();
             this.pnlProgressBar.SuspendLayout();
             this.pnlProgressTrack.SuspendLayout();
             this.pnlScroll.SuspendLayout();
             this.SuspendLayout();
-
-            // ── pnlHeader ──────────────────────────────────────────────────
-            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(30, 86, 160);
-            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeader.Height = 100;
+            // 
+            // pnlHeader
+            // 
+            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(86)))), ((int)(((byte)(160)))));
             this.pnlHeader.Controls.Add(this.btnBack);
             this.pnlHeader.Controls.Add(this.lblCourseCode);
             this.pnlHeader.Controls.Add(this.lblCourseName);
             this.pnlHeader.Controls.Add(this.lblCourseMeta);
-
+            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.Size = new System.Drawing.Size(1000, 100);
+            this.pnlHeader.TabIndex = 3;
+            // 
             // btnBack
-            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBack.FlatAppearance.BorderSize = 0;
-            this.btnBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(20, 60, 120);
+            // 
             this.btnBack.BackColor = System.Drawing.Color.Transparent;
-            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(190, 220, 255);
-            this.btnBack.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnBack.Text = "◀  Back to My Courses";
-            this.btnBack.Location = new System.Drawing.Point(16, 8);
-            this.btnBack.Size = new System.Drawing.Size(160, 26);
             this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBack.FlatAppearance.BorderSize = 0;
+            this.btnBack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(60)))), ((int)(((byte)(120)))));
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.btnBack.Location = new System.Drawing.Point(16, 8);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(160, 26);
+            this.btnBack.TabIndex = 0;
+            this.btnBack.Text = "◀  Back to My Courses";
+            this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-
+            // 
             // lblCourseCode
-            this.lblCourseCode.AutoSize = false;
-            this.lblCourseCode.Location = new System.Drawing.Point(16, 38);
-            this.lblCourseCode.Size = new System.Drawing.Size(200, 22);
+            // 
             this.lblCourseCode.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblCourseCode.ForeColor = System.Drawing.Color.FromArgb(173, 216, 255);
+            this.lblCourseCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(216)))), ((int)(((byte)(255)))));
+            this.lblCourseCode.Location = new System.Drawing.Point(16, 38);
+            this.lblCourseCode.Name = "lblCourseCode";
+            this.lblCourseCode.Size = new System.Drawing.Size(200, 22);
+            this.lblCourseCode.TabIndex = 1;
             this.lblCourseCode.Text = "CS101";
-
+            // 
             // lblCourseName
-            this.lblCourseName.AutoSize = false;
-            this.lblCourseName.Location = new System.Drawing.Point(16, 58);
-            this.lblCourseName.Size = new System.Drawing.Size(800, 26);
+            // 
             this.lblCourseName.Font = new System.Drawing.Font("Segoe UI Semibold", 13F);
             this.lblCourseName.ForeColor = System.Drawing.Color.White;
+            this.lblCourseName.Location = new System.Drawing.Point(16, 58);
+            this.lblCourseName.Name = "lblCourseName";
+            this.lblCourseName.Size = new System.Drawing.Size(800, 26);
+            this.lblCourseName.TabIndex = 2;
             this.lblCourseName.Text = "Course Name";
-
+            // 
             // lblCourseMeta
-            this.lblCourseMeta.AutoSize = false;
-            this.lblCourseMeta.Location = new System.Drawing.Point(16, 82);
-            this.lblCourseMeta.Size = new System.Drawing.Size(800, 16);
+            // 
             this.lblCourseMeta.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.lblCourseMeta.ForeColor = System.Drawing.Color.FromArgb(180, 210, 240);
+            this.lblCourseMeta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(210)))), ((int)(((byte)(240)))));
+            this.lblCourseMeta.Location = new System.Drawing.Point(16, 82);
+            this.lblCourseMeta.Name = "lblCourseMeta";
+            this.lblCourseMeta.Size = new System.Drawing.Size(800, 16);
+            this.lblCourseMeta.TabIndex = 3;
             this.lblCourseMeta.Text = "Schedule  •  Room";
-
-            // ── pnlFilterBar ───────────────────────────────────────────────
-            this.pnlFilterBar.BackColor = System.Drawing.Color.FromArgb(235, 240, 248);
-            this.pnlFilterBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlFilterBar.Height = 46;
+            // 
+            // pnlFilterBar
+            // 
+            this.pnlFilterBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.pnlFilterBar.Controls.Add(this.btnAll);
             this.pnlFilterBar.Controls.Add(this.btnAnnouncements);
             this.pnlFilterBar.Controls.Add(this.btnActivities);
             this.pnlFilterBar.Controls.Add(this.btnLinks);
             this.pnlFilterBar.Controls.Add(this.lblPostCount);
-
+            this.pnlFilterBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlFilterBar.Location = new System.Drawing.Point(0, 100);
+            this.pnlFilterBar.Name = "pnlFilterBar";
+            this.pnlFilterBar.Size = new System.Drawing.Size(1000, 46);
+            this.pnlFilterBar.TabIndex = 2;
+            // 
             // btnAll
-            this.btnAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAll.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(180, 200, 220);
+            // 
             this.btnAll.BackColor = System.Drawing.Color.White;
-            this.btnAll.ForeColor = System.Drawing.Color.FromArgb(60, 80, 110);
-            this.btnAll.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.btnAll.Text = "All";
-            this.btnAll.Location = new System.Drawing.Point(16, 8);
-            this.btnAll.Size = new System.Drawing.Size(80, 30);
             this.btnAll.Cursor = System.Windows.Forms.Cursors.Hand;
-
-            // btnAnnouncements
-            this.btnAnnouncements.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAnnouncements.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(180, 200, 220);
-            this.btnAnnouncements.BackColor = System.Drawing.Color.White;
-            this.btnAnnouncements.ForeColor = System.Drawing.Color.FromArgb(60, 80, 110);
-            this.btnAnnouncements.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.btnAnnouncements.Text = "📢 Announcements";
-            this.btnAnnouncements.Location = new System.Drawing.Point(106, 8);
-            this.btnAnnouncements.Size = new System.Drawing.Size(140, 30);
-            this.btnAnnouncements.Cursor = System.Windows.Forms.Cursors.Hand;
-
-            // btnActivities
-            this.btnActivities.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnActivities.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(180, 200, 220);
-            this.btnActivities.BackColor = System.Drawing.Color.White;
-            this.btnActivities.ForeColor = System.Drawing.Color.FromArgb(60, 80, 110);
-            this.btnActivities.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.btnActivities.Text = "📋 Activities & Quizzes";
-            this.btnActivities.Location = new System.Drawing.Point(256, 8);
-            this.btnActivities.Size = new System.Drawing.Size(160, 30);
-            this.btnActivities.Cursor = System.Windows.Forms.Cursors.Hand;
-
-            // btnLinks  (kept for legacy / direct filter)
-            this.btnLinks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLinks.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(180, 200, 220);
-            this.btnLinks.BackColor = System.Drawing.Color.White;
-            this.btnLinks.ForeColor = System.Drawing.Color.FromArgb(60, 80, 110);
-            this.btnLinks.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.btnLinks.Text = "🔗 Links";
-            this.btnLinks.Location = new System.Drawing.Point(426, 8);
-            this.btnLinks.Size = new System.Drawing.Size(90, 30);
-            this.btnLinks.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLinks.Visible = false;   // hidden — quizzes/links now grouped under Activities
-
+            this.btnAll.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(220)))));
+            this.btnAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAll.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.btnAll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(110)))));
+            this.btnAll.Location = new System.Drawing.Point(16, 8);
+            this.btnAll.Name = "btnAll";
+            this.btnAll.Size = new System.Drawing.Size(80, 30);
+            this.btnAll.TabIndex = 0;
+            this.btnAll.Text = "All";
+            this.btnAll.UseVisualStyleBackColor = false;
             this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
+            // 
+            // btnAnnouncements
+            // 
+            this.btnAnnouncements.BackColor = System.Drawing.Color.White;
+            this.btnAnnouncements.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAnnouncements.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(220)))));
+            this.btnAnnouncements.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAnnouncements.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.btnAnnouncements.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(110)))));
+            this.btnAnnouncements.Location = new System.Drawing.Point(106, 8);
+            this.btnAnnouncements.Name = "btnAnnouncements";
+            this.btnAnnouncements.Size = new System.Drawing.Size(140, 30);
+            this.btnAnnouncements.TabIndex = 1;
+            this.btnAnnouncements.Text = "📢 Announcements";
+            this.btnAnnouncements.UseVisualStyleBackColor = false;
             this.btnAnnouncements.Click += new System.EventHandler(this.btnAnnouncements_Click);
+            // 
+            // btnActivities
+            // 
+            this.btnActivities.BackColor = System.Drawing.Color.White;
+            this.btnActivities.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnActivities.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(220)))));
+            this.btnActivities.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActivities.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.btnActivities.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(110)))));
+            this.btnActivities.Location = new System.Drawing.Point(256, 8);
+            this.btnActivities.Name = "btnActivities";
+            this.btnActivities.Size = new System.Drawing.Size(160, 30);
+            this.btnActivities.TabIndex = 2;
+            this.btnActivities.Text = "📋 Activities & Quizzes";
+            this.btnActivities.UseVisualStyleBackColor = false;
             this.btnActivities.Click += new System.EventHandler(this.btnActivities_Click);
+            // 
+            // btnLinks
+            // 
+            this.btnLinks.BackColor = System.Drawing.Color.White;
+            this.btnLinks.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLinks.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(200)))), ((int)(((byte)(220)))));
+            this.btnLinks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLinks.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.btnLinks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(80)))), ((int)(((byte)(110)))));
+            this.btnLinks.Location = new System.Drawing.Point(426, 8);
+            this.btnLinks.Name = "btnLinks";
+            this.btnLinks.Size = new System.Drawing.Size(90, 30);
+            this.btnLinks.TabIndex = 3;
+            this.btnLinks.Text = "🔗 Links";
+            this.btnLinks.UseVisualStyleBackColor = false;
+            this.btnLinks.Visible = false;
             this.btnLinks.Click += new System.EventHandler(this.btnLinks_Click);
-
+            // 
             // lblPostCount
-            this.lblPostCount.AutoSize = false;
-            this.lblPostCount.Anchor = System.Windows.Forms.AnchorStyles.Right
-                                        | System.Windows.Forms.AnchorStyles.Top;
-            this.lblPostCount.Size = new System.Drawing.Size(120, 46);
+            // 
+            this.lblPostCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPostCount.Font = new System.Drawing.Font("Segoe UI", 8.5F);
             this.lblPostCount.ForeColor = System.Drawing.Color.Gray;
-            this.lblPostCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblPostCount.Location = new System.Drawing.Point(1700, 0);
+            this.lblPostCount.Name = "lblPostCount";
+            this.lblPostCount.Size = new System.Drawing.Size(120, 46);
+            this.lblPostCount.TabIndex = 4;
             this.lblPostCount.Text = "0 posts";
-            this.lblPostCount.Left = 900; // repositioned in OnResize
-
-            // ── pnlProgressBar ─────────────────────────────────────────────
-            this.pnlProgressBar.BackColor = System.Drawing.Color.FromArgb(245, 247, 252);
-            this.pnlProgressBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlProgressBar.Height = 40;
-            this.pnlProgressBar.Padding = new System.Windows.Forms.Padding(16, 6, 16, 6);
+            this.lblPostCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // pnlProgressBar
+            // 
+            this.pnlProgressBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(252)))));
             this.pnlProgressBar.Controls.Add(this.lblProgress);
             this.pnlProgressBar.Controls.Add(this.pnlProgressTrack);
-            this.pnlProgressBar.Visible = false; // shown when activities > 0
-
+            this.pnlProgressBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlProgressBar.Location = new System.Drawing.Point(0, 146);
+            this.pnlProgressBar.Name = "pnlProgressBar";
+            this.pnlProgressBar.Padding = new System.Windows.Forms.Padding(16, 6, 16, 6);
+            this.pnlProgressBar.Size = new System.Drawing.Size(1000, 40);
+            this.pnlProgressBar.TabIndex = 1;
+            this.pnlProgressBar.Visible = false;
+            // 
             // lblProgress
-            this.lblProgress.AutoSize = false;
-            this.lblProgress.Location = new System.Drawing.Point(16, 8);
-            this.lblProgress.Size = new System.Drawing.Size(400, 16);
+            // 
             this.lblProgress.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.lblProgress.ForeColor = System.Drawing.Color.FromArgb(50, 80, 110);
+            this.lblProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(80)))), ((int)(((byte)(110)))));
+            this.lblProgress.Location = new System.Drawing.Point(16, 8);
+            this.lblProgress.Name = "lblProgress";
+            this.lblProgress.Size = new System.Drawing.Size(400, 16);
+            this.lblProgress.TabIndex = 0;
             this.lblProgress.Text = "Activities Progress:  0 / 0 completed  (0%)";
-
-            // pnlProgressTrack (grey background bar)
-            this.pnlProgressTrack.Location = new System.Drawing.Point(16, 26);
-            this.pnlProgressTrack.Size = new System.Drawing.Size(600, 8);
-            this.pnlProgressTrack.BackColor = System.Drawing.Color.FromArgb(210, 215, 225);
+            // 
+            // pnlProgressTrack
+            // 
+            this.pnlProgressTrack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(215)))), ((int)(((byte)(225)))));
             this.pnlProgressTrack.Controls.Add(this.progressFill);
-
-            // progressFill (coloured fill)
+            this.pnlProgressTrack.Location = new System.Drawing.Point(16, 26);
+            this.pnlProgressTrack.Name = "pnlProgressTrack";
+            this.pnlProgressTrack.Size = new System.Drawing.Size(600, 8);
+            this.pnlProgressTrack.TabIndex = 1;
+            // 
+            // progressFill
+            // 
+            this.progressFill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(168)))), ((int)(((byte)(83)))));
             this.progressFill.Location = new System.Drawing.Point(1, 1);
+            this.progressFill.Name = "progressFill";
             this.progressFill.Size = new System.Drawing.Size(0, 6);
-            this.progressFill.BackColor = System.Drawing.Color.FromArgb(52, 168, 83);
-
-            // ── pnlScroll ──────────────────────────────────────────────────
-            this.pnlScroll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressFill.TabIndex = 0;
+            // 
+            // pnlScroll
+            // 
             this.pnlScroll.AutoScroll = true;
-            this.pnlScroll.BackColor = System.Drawing.Color.FromArgb(240, 242, 245);
-            this.pnlScroll.Padding = new System.Windows.Forms.Padding(28, 16, 28, 16);
+            this.pnlScroll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.pnlScroll.Controls.Add(this.flowPosts);
             this.pnlScroll.Controls.Add(this.lblNoPosts);
-
+            this.pnlScroll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlScroll.Location = new System.Drawing.Point(0, 186);
+            this.pnlScroll.Name = "pnlScroll";
+            this.pnlScroll.Padding = new System.Windows.Forms.Padding(28, 16, 28, 16);
+            this.pnlScroll.Size = new System.Drawing.Size(1000, 514);
+            this.pnlScroll.TabIndex = 0;
+            // 
             // flowPosts
+            // 
             this.flowPosts.AutoSize = true;
             this.flowPosts.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowPosts.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowPosts.WrapContents = false;
-            this.flowPosts.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowPosts.BackColor = System.Drawing.Color.Transparent;
-
+            this.flowPosts.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowPosts.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowPosts.Location = new System.Drawing.Point(28, 16);
+            this.flowPosts.Name = "flowPosts";
+            this.flowPosts.Size = new System.Drawing.Size(944, 0);
+            this.flowPosts.TabIndex = 0;
+            this.flowPosts.WrapContents = false;
+            // 
             // lblNoPosts
-            this.lblNoPosts.AutoSize = false;
+            // 
             this.lblNoPosts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblNoPosts.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.lblNoPosts.ForeColor = System.Drawing.Color.Gray;
-            this.lblNoPosts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblNoPosts.Location = new System.Drawing.Point(28, 16);
+            this.lblNoPosts.Name = "lblNoPosts";
+            this.lblNoPosts.Size = new System.Drawing.Size(944, 482);
+            this.lblNoPosts.TabIndex = 1;
             this.lblNoPosts.Text = "No posts yet for this course.";
+            this.lblNoPosts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblNoPosts.Visible = false;
-
-            // ── CourseView ─────────────────────────────────────────────────
+            // 
+            // CourseView
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(240, 242, 245);
-            // Order matters: Fill must be added first, then Top-docked panels
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.Controls.Add(this.pnlScroll);
             this.Controls.Add(this.pnlProgressBar);
             this.Controls.Add(this.pnlFilterBar);
             this.Controls.Add(this.pnlHeader);
             this.Name = "CourseView";
             this.Size = new System.Drawing.Size(1000, 700);
-
             this.pnlHeader.ResumeLayout(false);
             this.pnlFilterBar.ResumeLayout(false);
             this.pnlProgressBar.ResumeLayout(false);
@@ -229,7 +287,7 @@
             this.pnlScroll.ResumeLayout(false);
             this.pnlScroll.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
+
         }
 
         #endregion

@@ -72,6 +72,11 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
 
         private void ShowCourseView(StudentSubjectInfo course)
         {
+            // Suspend layout on both the container and the form so no
+            // intermediate repaint fires between Clear(), Add(), and LoadCourse().
+            pnlContent.SuspendLayout();
+            this.SuspendLayout();
+
             pnlContent.Controls.Clear();
 
             var view = new CourseView();
@@ -79,15 +84,13 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             view.BackRequested += (s, e) => ShowCourseList();
 
             pnlContent.Controls.Add(view);
-            pnlContent.PerformLayout();
 
-            // BeginInvoke defers LoadCourse until AFTER StudentForm.Show()
-            // finishes its own layout pass — without this, the posts render
-            // for one frame then get wiped when the parent form finalizes.
-            this.BeginInvoke(new Action(() =>
-            {
-                view.LoadCourse(course, studentId);
-            }));
+            // Load data BEFORE resuming layout so the very first painted
+            // frame already has all postcards in place — no flicker/flash.
+            view.LoadCourse(course, studentId);
+
+            pnlContent.ResumeLayout(true);
+            this.ResumeLayout(true);
         }
 
         // ════════════════════════════════════════════════════════════════════
@@ -121,6 +124,6 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
         //  InitializeComponent
         // ════════════════════════════════════════════════════════════════════
 
-        
+
     }
 }

@@ -8,12 +8,12 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
     public partial class PostCard : UserControl
     {
         private static readonly Color ColourAnnouncement = Color.FromArgb(66, 133, 244);  // blue
-        private static readonly Color ColourActivity     = Color.FromArgb(52, 168, 83);   // green
-        private static readonly Color ColourLink         = Color.FromArgb(234, 67, 53);   // red
+        private static readonly Color ColourActivity = Color.FromArgb(52, 168, 83);   // green
+        private static readonly Color ColourLink = Color.FromArgb(234, 67, 53);   // red
 
-        private string _url        = "";
-        private string _driveUrl   = "";   // Google Drive submission link (from LinkURL on Activity posts)
-        private bool   _completed  = false;
+        private string _url = "";
+        private string _driveUrl = "";   // Google Drive submission link (from LinkURL on Activity posts)
+        private bool _completed = false;
 
         // Fired whenever the student toggles the Task Complete button
         public event EventHandler CompletionChanged;
@@ -24,6 +24,13 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
         public PostCard()
         {
             InitializeComponent();
+            // Eliminate flicker when the card is created or repainted
+            this.SetStyle(
+                ControlStyles.OptimizedDoubleBuffer |
+                ControlStyles.AllPaintingInWmPaint |
+                ControlStyles.UserPaint,
+                true);
+            this.UpdateStyles();
         }
 
         // ── Public API ───────────────────────────────────────────────────────
@@ -123,8 +130,8 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             switch (postType)
             {
                 case "Activity": return ColourActivity;
-                case "Link":     return ColourLink;
-                default:         return ColourAnnouncement;
+                case "Link": return ColourLink;
+                default: return ColourAnnouncement;
             }
         }
 
@@ -133,7 +140,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             switch (postType)
             {
                 case "Link": return "QUIZ / LINK";
-                default:     return postType.ToUpperInvariant();
+                default: return postType.ToUpperInvariant();
             }
         }
 
@@ -144,22 +151,22 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             if (_completed)
             {
                 // Completed state
-                btnTaskComplete.Text      = "✔  Completed  (click to undo)";
+                btnTaskComplete.Text = "✔  Completed  (click to undo)";
                 btnTaskComplete.BackColor = Color.FromArgb(52, 168, 83);
                 btnTaskComplete.ForeColor = Color.White;
-                btnUpload.Enabled         = false;
-                btnUpload.BackColor       = Color.FromArgb(200, 200, 200);
-                btnUpload.ForeColor       = Color.FromArgb(140, 140, 140);
+                btnUpload.Enabled = false;
+                btnUpload.BackColor = Color.FromArgb(200, 200, 200);
+                btnUpload.ForeColor = Color.FromArgb(140, 140, 140);
             }
             else
             {
                 // Pending state
-                btnTaskComplete.Text      = "☐  Mark as Complete";
+                btnTaskComplete.Text = "☐  Mark as Complete";
                 btnTaskComplete.BackColor = Color.White;
                 btnTaskComplete.ForeColor = Color.FromArgb(52, 168, 83);
-                btnUpload.Enabled         = true;
-                btnUpload.BackColor       = Color.FromArgb(66, 133, 244);
-                btnUpload.ForeColor       = Color.White;
+                btnUpload.Enabled = true;
+                btnUpload.BackColor = Color.FromArgb(66, 133, 244);
+                btnUpload.ForeColor = Color.White;
             }
         }
 

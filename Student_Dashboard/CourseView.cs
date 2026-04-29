@@ -16,6 +16,10 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
         private StudentSubjectInfo _course;
         private int _studentId;
         private List<CoursePostInfo> _allPosts = new List<CoursePostInfo>();
+        // Cached fonts — allocated once, reused on every filter click
+        private readonly Font _filterFontBold = new Font("Segoe UI", 8.5F, FontStyle.Bold);
+        private readonly Font _filterFontRegular = new Font("Segoe UI", 8.5F, FontStyle.Regular);
+
         private string _activeFilter = "All";
 
         // Raised when student presses "Back"
@@ -24,7 +28,30 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
         public CourseView()
         {
             InitializeComponent();
+            // Eliminate flicker on the outer UserControl
+            this.SetStyle(
+                ControlStyles.OptimizedDoubleBuffer |
+                ControlStyles.AllPaintingInWmPaint |
+                ControlStyles.UserPaint,
+                true);
+            this.UpdateStyles();
+
+            // Enable double-buffering on the FlowLayoutPanel via reflection
+            // (WinForms doesn't expose DoubleBuffered publicly on Panel/FlowLayoutPanel)
+            EnableDoubleBuffer(flowPosts);
+            EnableDoubleBuffer(pnlScroll);
+
             this.Resize += new System.EventHandler(this.CourseView_Resize);
+        }
+
+        // Helper: turns on DoubleBuffered on any Control via the protected property
+        private static void EnableDoubleBuffer(System.Windows.Forms.Control ctrl)
+        {
+            var prop = typeof(System.Windows.Forms.Control)
+                           .GetProperty("DoubleBuffered",
+                               System.Reflection.BindingFlags.Instance |
+                               System.Reflection.BindingFlags.NonPublic);
+            prop?.SetValue(ctrl, true, null);
         }
 
         // ── Public ───────────────────────────────────────────────────────────
@@ -87,7 +114,8 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
 
             bool empty = (posts == null || posts.Count == 0);
             lblNoPosts.Visible = empty;
-            flowPosts.Visible = !empty;
+            // Do NOT toggle flowPosts.Visible — hiding/showing causes a full repaint flash.
+            // The flow panel stays visible; when empty it simply has no children.
 
             int totalPosts = posts?.Count ?? 0;
             lblPostCount.Text = totalPosts == 0 ? "0 posts"
@@ -204,8 +232,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                 bool isActive = (btn == active);
                 btn.BackColor = isActive ? activeBack : inactiveBack;
                 btn.ForeColor = isActive ? Color.White : Color.FromArgb(60, 80, 110);
-                btn.Font = new Font("Segoe UI", 8.5F,
-                                           isActive ? FontStyle.Bold : FontStyle.Regular);
+                btn.Font = isActive ? _filterFontBold : _filterFontRegular;
             }
         }
 
