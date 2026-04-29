@@ -64,7 +64,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                                 txtMOccupation.Text = reader["MotherOccupation"]?.ToString() ?? "";
 
                                 if (reader["Birthday"] != DBNull.Value)
-                                    dtpBirthday.Value = Convert.ToDateTime(reader["Birthday"]);
+                                    dtpBirthday1.Value = Convert.ToDateTime(reader["Birthday"]);
 
                                 // Load profile picture
                                 string profilePicturePath = reader["ProfilePicturePath"]?.ToString();
@@ -163,7 +163,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                         cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
                         cmd.Parameters.AddWithValue("@phone", txtPhone.Text.Trim());
                         cmd.Parameters.AddWithValue("@address", txtAddress.Text.Trim());
-                        cmd.Parameters.AddWithValue("@birthday", dtpBirthday.Value);
+                        cmd.Parameters.AddWithValue("@birthday", dtpBirthday1.Value);
                         cmd.Parameters.AddWithValue("@fname", txtFName.Text.Trim());
                         cmd.Parameters.AddWithValue("@mname", txtMName.Text.Trim());
                         cmd.Parameters.AddWithValue("@focc", txtFOccupation.Text.Trim());

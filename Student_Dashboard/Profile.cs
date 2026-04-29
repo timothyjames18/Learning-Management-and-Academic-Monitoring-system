@@ -112,7 +112,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                                 txtPass.Text = reader["PasswordHash"]?.ToString() ?? "";
 
                                 if (reader["Birthday"] != DBNull.Value)
-                                    dtpBirthday.Value = Convert.ToDateTime(reader["Birthday"]);
+                                    dtpBirthday1.Value = Convert.ToDateTime(reader["Birthday"]);
 
                                 string profilePicturePath = reader["ProfilePicturePath"]?.ToString();
 

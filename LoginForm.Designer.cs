@@ -28,19 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.txtUsername = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lblUser = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.lblPass = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.frgtp = new System.Windows.Forms.LinkLabel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblDebug = new System.Windows.Forms.Label();
             this.lblConn = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,11 +48,6 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(162, 20);
             this.txtUsername.TabIndex = 1;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // lblUser
             // 
@@ -135,16 +127,6 @@
             this.frgtp.TabStop = true;
             this.frgtp.Text = "Forgot pass?";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(97, 44);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(145, 145);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblDebug
             // 
             this.lblDebug.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -162,6 +144,16 @@
             this.lblConn.Size = new System.Drawing.Size(334, 23);
             this.lblConn.TabIndex = 10;
             this.lblConn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Learning_Management_and_Academic_Monitoring_system.Properties.Resources.school_logo;
+            this.pictureBox1.Location = new System.Drawing.Point(97, 44);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(145, 145);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // LoginForm
             // 
@@ -193,7 +185,6 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label lblPass;

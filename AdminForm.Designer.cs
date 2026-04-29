@@ -1,6 +1,6 @@
 ﻿namespace Learning_Management_and_Academic_Monitoring_system
 {
-    partial class StudentForm
+    partial class AdminForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,23 +34,23 @@
             this.btnAttendance = new System.Windows.Forms.Button();
             this.btnGrades = new System.Windows.Forms.Button();
             this.btnCourses = new System.Windows.Forms.Button();
+            this.logoPanel = new System.Windows.Forms.PictureBox();
             this.wlcm = new System.Windows.Forms.Label();
             this.btnProfile = new System.Windows.Forms.Button();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.lblName = new System.Windows.Forms.Label();
-            this.pnlDashboard = new System.Windows.Forms.Panel();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnCloseChildForm = new System.Windows.Forms.Button();
-            this.logoPanel = new System.Windows.Forms.PictureBox();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.pnlDashboard = new System.Windows.Forms.Panel();
             this.pnlNavigation.SuspendLayout();
             this.tblpnlNavigation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoPanel)).BeginInit();
             this.pnlHeader.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logoPanel)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlNavigation
@@ -123,7 +123,7 @@
             this.btnAttendance.Name = "btnAttendance";
             this.btnAttendance.Size = new System.Drawing.Size(212, 42);
             this.btnAttendance.TabIndex = 8;
-            this.btnAttendance.Text = "Calendar";
+            this.btnAttendance.Text = "Enroll Instructor";
             this.btnAttendance.UseVisualStyleBackColor = false;
             this.btnAttendance.Click += new System.EventHandler(this.btnAttendance_Click);
             // 
@@ -157,9 +157,22 @@
             this.btnCourses.Name = "btnCourses";
             this.btnCourses.Size = new System.Drawing.Size(212, 42);
             this.btnCourses.TabIndex = 4;
-            this.btnCourses.Text = "Courses";
+            this.btnCourses.Text = "Enroll Students";
             this.btnCourses.UseVisualStyleBackColor = false;
             this.btnCourses.Click += new System.EventHandler(this.btnCourses_Click);
+            // 
+            // logoPanel
+            // 
+            this.logoPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.logoPanel.Image = global::Learning_Management_and_Academic_Monitoring_system.Properties.Resources.school_logo;
+            this.logoPanel.Location = new System.Drawing.Point(3, 13);
+            this.logoPanel.Margin = new System.Windows.Forms.Padding(3, 13, 3, 3);
+            this.logoPanel.Name = "logoPanel";
+            this.logoPanel.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
+            this.logoPanel.Size = new System.Drawing.Size(212, 147);
+            this.logoPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logoPanel.TabIndex = 1;
+            this.logoPanel.TabStop = false;
             // 
             // wlcm
             // 
@@ -217,38 +230,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(874, 30);
             this.panel1.TabIndex = 3;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Franklin Gothic Medium", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(390, 33);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(78, 30);
-            this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "Home";
-            // 
-            // lblName
-            // 
-            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.ForeColor = System.Drawing.Color.White;
-            this.lblName.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblName.Location = new System.Drawing.Point(0, 21);
-            this.lblName.Name = "lblName";
-            this.lblName.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.lblName.Size = new System.Drawing.Size(331, 54);
-            this.lblName.TabIndex = 0;
-            this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pnlDashboard
-            // 
-            this.pnlDashboard.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.pnlDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDashboard.Location = new System.Drawing.Point(218, 78);
-            this.pnlDashboard.Name = "pnlDashboard";
-            this.pnlDashboard.Size = new System.Drawing.Size(881, 647);
-            this.pnlDashboard.TabIndex = 0;
             // 
             // btnMinimize
             // 
@@ -311,20 +292,39 @@
             this.btnCloseChildForm.UseVisualStyleBackColor = true;
             this.btnCloseChildForm.Click += new System.EventHandler(this.btnCloseChildForm_Click);
             // 
-            // logoPanel
+            // lblTitle
             // 
-            this.logoPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.logoPanel.Image = global::Learning_Management_and_Academic_Monitoring_system.Properties.Resources.school_logo;
-            this.logoPanel.Location = new System.Drawing.Point(3, 13);
-            this.logoPanel.Margin = new System.Windows.Forms.Padding(3, 13, 3, 3);
-            this.logoPanel.Name = "logoPanel";
-            this.logoPanel.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
-            this.logoPanel.Size = new System.Drawing.Size(212, 147);
-            this.logoPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logoPanel.TabIndex = 1;
-            this.logoPanel.TabStop = false;
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Franklin Gothic Medium", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(390, 33);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(78, 30);
+            this.lblTitle.TabIndex = 1;
+            this.lblTitle.Text = "Home";
             // 
-            // StudentForm
+            // lblName
+            // 
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.ForeColor = System.Drawing.Color.White;
+            this.lblName.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblName.Location = new System.Drawing.Point(0, 21);
+            this.lblName.Name = "lblName";
+            this.lblName.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.lblName.Size = new System.Drawing.Size(331, 54);
+            this.lblName.TabIndex = 0;
+            this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pnlDashboard
+            // 
+            this.pnlDashboard.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.pnlDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDashboard.Location = new System.Drawing.Point(218, 78);
+            this.pnlDashboard.Name = "pnlDashboard";
+            this.pnlDashboard.Size = new System.Drawing.Size(881, 647);
+            this.pnlDashboard.TabIndex = 0;
+            // 
+            // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -335,16 +335,16 @@
             this.Controls.Add(this.pnlHeader);
             this.Controls.Add(this.pnlNavigation);
             this.MinimumSize = new System.Drawing.Size(1115, 764);
-            this.Name = "StudentForm";
+            this.Name = "AdminForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "StudentForm";
+            this.Text = "AdminForm";
             this.Load += new System.EventHandler(this.StudentForm_Load);
             this.pnlNavigation.ResumeLayout(false);
             this.tblpnlNavigation.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logoPanel)).EndInit();
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.logoPanel)).EndInit();
             this.ResumeLayout(false);
 
         }

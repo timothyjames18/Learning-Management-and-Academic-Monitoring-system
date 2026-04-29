@@ -1,6 +1,6 @@
 ﻿namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
 {
-    partial class Courses
+    partial class Personal_Messsages
     {
         /// <summary>
         /// Required designer variable.
@@ -28,33 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(183, 47);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "courses";
-            // 
-            // Courses
+            // Personal_Messsages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label2);
-            this.Name = "Courses";
-            this.Text = "Schedule";
+            this.ClientSize = new System.Drawing.Size(780, 537);
+            this.Name = "Personal_Messsages";
+            this.Text = "Personal_Messsages";
+            this.Load += new System.EventHandler(this.Personal_Messsages_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label2;
     }
 }

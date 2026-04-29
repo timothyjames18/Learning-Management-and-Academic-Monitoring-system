@@ -9,17 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
+namespace Learning_Management_and_Academic_Monitoring_system.Admin_Dashboard
 {
-    public partial class Courses : Form
+    public partial class EnrollStudent : Form
     {
         private string connectionString = "Server=localhost;Database=lms_db;Uid=root;Pwd=;";
-        private Label label1;
-        private FlowLayoutPanel flowLayoutPanelSubjects;
-        private int studentId;
-        public Courses(int userId)
+        private int adminId;
+        public EnrollStudent(int userId)
         {
-            studentId = userId;
+            adminId = userId;
             InitializeComponent();
             LoadCurrentProfile();
         }
@@ -37,7 +35,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@id", studentId);
+                        cmd.Parameters.AddWithValue("@id", adminId);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             //if (reader.Read())
@@ -83,37 +81,81 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             }
         }
 
-        private void InitializeComponent()
+        private void EnrollStudent_Load(object sender, EventArgs e)
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanelSubjects = new System.Windows.Forms.FlowLayoutPanel();
-            this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1151, 23);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Enroll in 0 Subjects";
-            // 
-            // flowLayoutPanelSubjects
-            // 
-            this.flowLayoutPanelSubjects.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelSubjects.Location = new System.Drawing.Point(0, 23);
-            this.flowLayoutPanelSubjects.Name = "flowLayoutPanelSubjects";
-            this.flowLayoutPanelSubjects.Size = new System.Drawing.Size(1151, 665);
-            this.flowLayoutPanelSubjects.TabIndex = 1;
-            // 
-            // Courses
-            // 
-            this.ClientSize = new System.Drawing.Size(1151, 688);
-            this.Controls.Add(this.flowLayoutPanelSubjects);
-            this.Controls.Add(this.label1);
-            this.Name = "Courses";
-            this.ResumeLayout(false);
+            LoadData();
+        }
+        private void LoadData()
+        {
+            LoadStudents();
+            LoadCourses();
+            RefreshEnrollments();
+        }
 
+        private void LoadStudents()
+        {
+            try
+            {
+                cmbStudents.DataSource = null;
+                cmbStudents.DataSource = DatabaseHelper.GetStudentsForEnrollment();
+                cmbStudents.DisplayMember = "FullName";
+                cmbStudents.ValueMember = "UserID";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Students load error: " + ex.Message);
+            }
+        }
+
+        private void LoadCourses()
+        {
+            try
+            {
+                cmbCourses.DataSource = null;
+                cmbCourses.DataSource = DatabaseHelper.GetAvailableCourses();
+                cmbCourses.DisplayMember = "FullName";
+                cmbCourses.ValueMember = "CourseID";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Courses load error: " + ex.Message);
+            }
+        }
+
+        private void RefreshEnrollments()
+        {
+            try
+            {
+                dgvEnrollments.DataSource = DatabaseHelper.GetRecentEnrollments();
+                //if (dgvEnrollments.Columns["EnrollDate"] != null)
+                 //   dgvEnrollments.Columns["EnrollDate"].DefaultCellStyle.Format = "MM/dd/yyyy";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Grid error: " + ex.Message);
+            }
+        }
+
+        private void btnEnrollStudent_Click_1(object sender, EventArgs e)
+        {
+            if (cmbStudents.SelectedValue == null || cmbCourses.SelectedValue == null)
+            {
+                MessageBox.Show("Select student AND course!", "Missing Selection");
+                return;
+            }
+
+            int userId = (int)cmbStudents.SelectedValue;
+            int courseId = (int)cmbCourses.SelectedValue;
+
+            if (DatabaseHelper.EnrollStudent(userId, courseId))
+            {
+                MessageBox.Show("✅ Student enrolled successfully!", "Success");
+                RefreshEnrollments();
+            }
+            else
+            {
+                MessageBox.Show("❌ Already enrolled or error!", "Info");
+            }
         }
     }
 }

@@ -1,15 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
-using Org.BouncyCastle.Asn1.Cmp;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Learning_Management_and_Academic_Monitoring_system
@@ -99,9 +91,9 @@ namespace Learning_Management_and_Academic_Monitoring_system
                                 // 🎭 OPEN FORM BY ROLE
                                 switch (role)
                                 {
-                                    //case "Admin":
-                                    // new AdminDashboard().Show();
-                                    //  break;
+                                    case "Admin":
+                                        new AdminForm(reader.GetInt32("UserID")).Show();
+                                        break;
                                     case "Student":
                                         new StudentForm(reader.GetInt32("UserID")).Show();  // Your existing form
                                         break;

@@ -10,21 +10,21 @@ using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 
 namespace Learning_Management_and_Academic_Monitoring_system
 {
-    public partial class StudentForm : Form
+    public partial class AdminForm : Form
     {
         private string connectionString = "Server=localhost;Database=lms_db;Uid=root;Pwd=;";
-        private int studentId;
+        private int adminId;
         private Random random = new Random();
         private int tempIndex = 0;
         private Button currentButton;
         private Form activeForm;
 
-        public StudentForm(int userId)
+        public AdminForm(int userId)
         {
-            studentId = userId;
+            adminId = userId;
             InitializeComponent();
             SetupNavigationHoverEffects();
-            if (studentId > 0)
+            if (adminId > 0)
                 LoadStudentWelcome();
             this.Text = string.Empty;
             this.ControlBox = false;
@@ -64,7 +64,7 @@ namespace Learning_Management_and_Academic_Monitoring_system
                     string query = "SELECT FullName, Role FROM Users WHERE UserID=@id";
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@id", studentId);
+                        cmd.Parameters.AddWithValue("@id", adminId);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
@@ -120,8 +120,6 @@ namespace Learning_Management_and_Academic_Monitoring_system
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
 
-            if (childForm is Profile profileForm)
-                profileForm.SetParentForm(this);
 
             this.pnlDashboard.Controls.Add(childForm);
             this.pnlDashboard.Tag = childForm;
@@ -137,31 +135,31 @@ namespace Learning_Management_and_Academic_Monitoring_system
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Student_Dashboard.Profile(studentId), sender);
+            OpenChildForm(new Student_Dashboard.Profile(adminId), sender);
         }
         private void btnCourses_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Student_Dashboard.Courses(studentId), sender);
+            OpenChildForm(new Admin_Dashboard.EnrollStudent(adminId), sender);
         }
         private void btnActivities_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Student_Dashboard.Activities(studentId), sender);
+            OpenChildForm(new Student_Dashboard.Activities(adminId), sender);
         }
         private void btnGrades_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Student_Dashboard.Grade(studentId), sender);
+            OpenChildForm(new Student_Dashboard.Grade(adminId), sender);
         }
         private void btnAssessment_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Student_Dashboard.Assessment(studentId), sender);
+            OpenChildForm(new Student_Dashboard.Assessment(adminId), sender);
         }
         private void btnAttendance_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Student_Dashboard.Attendance(studentId), sender);
+            OpenChildForm(new Student_Dashboard.Attendance(adminId), sender);
         }
         private void btnMessages_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Student_Dashboard.Messages(studentId), sender);
+            OpenChildForm(new Student_Dashboard.Messages(adminId), sender);
         }
         private void pnlProfile_Paint(object sender, PaintEventArgs e)
         {

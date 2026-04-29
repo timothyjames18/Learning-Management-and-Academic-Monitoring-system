@@ -53,7 +53,6 @@
             this.txtMOccupation = new System.Windows.Forms.TextBox();
             this.txtFName = new System.Windows.Forms.TextBox();
             this.txtFOccupation = new System.Windows.Forms.TextBox();
-            this.dtpBirthday = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -67,6 +66,7 @@
             this.pbxPfp = new System.Windows.Forms.PictureBox();
             this.chkShowPassword = new System.Windows.Forms.CheckBox();
             this.btnDeletePfp = new System.Windows.Forms.Button();
+            this.dtpBirthday1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPfp)).BeginInit();
             this.SuspendLayout();
             // 
@@ -326,15 +326,6 @@
             this.txtFOccupation.Size = new System.Drawing.Size(166, 16);
             this.txtFOccupation.TabIndex = 25;
             // 
-            // dtpBirthday
-            // 
-            this.dtpBirthday.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpBirthday.Location = new System.Drawing.Point(410, 296);
-            this.dtpBirthday.Name = "dtpBirthday";
-            this.dtpBirthday.Size = new System.Drawing.Size(115, 22);
-            this.dtpBirthday.TabIndex = 26;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -476,11 +467,30 @@
             this.btnDeletePfp.UseVisualStyleBackColor = true;
             this.btnDeletePfp.Click += new System.EventHandler(this.btnDeletePfp_Click);
             // 
+            // dtpBirthday1
+            // 
+            this.dtpBirthday1.BackColor = System.Drawing.Color.White;
+            this.dtpBirthday1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.dtpBirthday1.BorderColor = System.Drawing.Color.White;
+            this.dtpBirthday1.Checked = true;
+            this.dtpBirthday1.FillColor = System.Drawing.Color.White;
+            this.dtpBirthday1.FocusedColor = System.Drawing.Color.White;
+            this.dtpBirthday1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpBirthday1.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpBirthday1.Location = new System.Drawing.Point(404, 290);
+            this.dtpBirthday1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpBirthday1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpBirthday1.Name = "dtpBirthday1";
+            this.dtpBirthday1.Size = new System.Drawing.Size(200, 36);
+            this.dtpBirthday1.TabIndex = 40;
+            this.dtpBirthday1.Value = new System.DateTime(2026, 4, 13, 13, 23, 57, 99);
+            // 
             // Profile_Editable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 604);
+            this.Controls.Add(this.dtpBirthday1);
             this.Controls.Add(this.btnDeletePfp);
             this.Controls.Add(this.chkShowPassword);
             this.Controls.Add(this.txtConfirmPassword);
@@ -493,7 +503,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dtpBirthday);
             this.Controls.Add(this.txtFOccupation);
             this.Controls.Add(this.txtFName);
             this.Controls.Add(this.txtMOccupation);
@@ -546,7 +555,6 @@
         private System.Windows.Forms.Button BtnProfEdit;
         private System.Windows.Forms.Button BtnProfSave;
         private System.Windows.Forms.Button BtnAddPfP;
-        private System.Windows.Forms.DateTimePicker dtpBirthday;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button BtnChangePss;
@@ -570,5 +578,6 @@
         private System.Windows.Forms.Label lblConfirmPass;
         private System.Windows.Forms.CheckBox chkShowPassword;
         private System.Windows.Forms.Button btnDeletePfp;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpBirthday1;
     }
 }
