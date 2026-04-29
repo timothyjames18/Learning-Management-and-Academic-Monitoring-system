@@ -172,6 +172,7 @@
     <Compile Include="Admin_Dashboard\EnrollInstructor.Designer.cs">
       <DependentUpon>EnrollInstructor.cs</DependentUpon>
     </Compile>
+    <Compile Include="CoursepostInfo.cs" />
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="AdminForm.cs">
       <SubType>Form</SubType>
@@ -185,11 +186,23 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="StudentSubjectInfo.cs" />
+    <Compile Include="Student_Dashboard\CourseView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Student_Dashboard\CourseView.Designer.cs">
+      <DependentUpon>CourseView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Student_Dashboard\Personal_Messsages.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Student_Dashboard\Personal_Messsages.Designer.cs">
       <DependentUpon>Personal_Messsages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Student_Dashboard\PostCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Student_Dashboard\PostCard.Designer.cs">
+      <DependentUpon>PostCard.cs</DependentUpon>
     </Compile>
     <Compile Include="Student_Dashboard\Profile_Editable.cs">
       <SubType>Form</SubType>
@@ -296,6 +309,9 @@
     <EmbeddedResource Include="Student_Dashboard\Courses.resx">
       <DependentUpon>Courses.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Student_Dashboard\CourseView.resx">
+      <DependentUpon>CourseView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Student_Dashboard\Grade.resx">
       <DependentUpon>Grade.cs</DependentUpon>
     </EmbeddedResource>
@@ -304,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Student_Dashboard\Personal_Messsages.resx">
       <DependentUpon>Personal_Messsages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student_Dashboard\PostCard.resx">
+      <DependentUpon>PostCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Student_Dashboard\Profile_Editable.resx">
       <DependentUpon>Profile_Editable.cs</DependentUpon>

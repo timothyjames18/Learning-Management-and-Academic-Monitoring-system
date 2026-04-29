@@ -14,13 +14,17 @@ namespace Learning_Management_and_Academic_Monitoring_system
     public partial class SubjectCard : UserControl
     {
         public StudentSubjectInfo Course { get; private set; }
+
+        // Raised when the student clicks "View" on this card.
+        // The int argument is the CourseID.
+        public event EventHandler<int> ViewCourseRequested;
+
         public SubjectCard()
         {
             InitializeComponent();
         }
 
-
-        public void LoadCourse(StudentSubjectInfo course)  // ← YOUR CLASS!
+        public void LoadCourse(StudentSubjectInfo course)
         {
             Course = course;
             UpdateDisplay();
@@ -28,26 +32,22 @@ namespace Learning_Management_and_Academic_Monitoring_system
 
         private void UpdateDisplay()
         {
-            // YOUR PROPERTIES!
             lblTitle.Text = $"{Course.CourseCode} - {Course.CourseName}";
             lblSchedule.Text = $"{Course.Schedule}";
             lblRoom.Text = $"{Course.Room}";
             lblDetails.Text = $"{Course.Credits} Credits • {Course.Semester} • {Course.ActivityCount} Activities";
 
-            // Default to 100% when no activities have been uploaded yet
             int percentage = 100;
             progressCompletion.Value = percentage;
             lblProgressBar.Text = $"{percentage}%";
         }
 
-        private void SubjectCard_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void SubjectCard_Load(object sender, EventArgs e) { }
 
         private void btnView_Click(object sender, EventArgs e)
         {
-
+            // Fire the event so the parent Courses form can react
+            ViewCourseRequested?.Invoke(this, Course.CourseID);
         }
     }
 }
