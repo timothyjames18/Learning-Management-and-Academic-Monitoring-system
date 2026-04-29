@@ -241,7 +241,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
 
             // ── Student info block ────────────────────
             // Row 1: Student No
-            g.DrawString("Student No.:", fontLabelB, black, marginLeft, y);
+            g.DrawString("Student No.: ", fontLabelB, black, marginLeft, y);
             g.DrawString(studentNumber, fontLabel, blue, marginLeft + 80, y);
             y += 18;
 
@@ -256,10 +256,10 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             y += 32;
 
             // Row 3: School year, grade level, semester
-            g.DrawString("School Year:", fontLabelB, black, marginLeft, y);
+            g.DrawString("School Year: ", fontLabelB, black, marginLeft, y);
             g.DrawString($"{DateTime.Now.Year - 1}-{DateTime.Now.Year}", fontLabel, blue, marginLeft + 75, y);
 
-            g.DrawString("Grade Level:", fontLabelB, black, marginLeft + 200, y);
+            g.DrawString("Grade Level: ", fontLabelB, black, marginLeft + 200, y);
             string yearStr = studentYearLevel == 1 ? "1st Year College"
                            : studentYearLevel == 2 ? "2nd Year College"
                            : studentYearLevel == 3 ? "3rd Year College"
@@ -267,12 +267,12 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                            : $"Year {studentYearLevel}";
             g.DrawString(yearStr, fontLabel, blue, marginLeft + 275, y);
 
-            g.DrawString("Semester:", fontLabelB, black, marginLeft + 420, y);
+            g.DrawString("Semester: ", fontLabelB, black, marginLeft + 420, y);
             g.DrawString("1st Sem", fontLabel, blue, marginLeft + 480, y);
             y += 18;
 
             // Row 4: Section, program
-            g.DrawString("Section:", fontLabelB, black, marginLeft, y);
+            g.DrawString("Section: ", fontLabelB, black, marginLeft, y);
             g.DrawString(studentSection, fontLabel, blue, marginLeft + 55, y);
 
             g.DrawString("Course:", fontLabelB, black, marginLeft + 200, y);
