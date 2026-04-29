@@ -33,7 +33,11 @@ namespace Learning_Management_and_Academic_Monitoring_system
             lblSchedule.Text = $"📚 {Course.Schedule}";
             lblRoom.Text = $"🏫 {Course.Room}";
             lblDetails.Text = $"{Course.Credits} Credits • {Course.Semester} • {Course.ActivityCount} Activities";
-            progressCompletion.Value = 75; // Mock
+
+            // Default to 100% when no activities have been uploaded yet
+            int percentage = 100;
+            progressCompletion.Value = percentage;
+            lblProgressBar.Text = $"{percentage}%";
         }
 
         private void SubjectCard_Load(object sender, EventArgs e)

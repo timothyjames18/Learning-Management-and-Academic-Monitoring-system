@@ -63,9 +63,9 @@ namespace Learning_Management_and_Academic_Monitoring_system
                Email 
         FROM users 
         WHERE Role = 'Student'
-        ORDER BY Surname, FirstName";  
+        ORDER BY Surname, FirstName";
 
-        var students = new List<UserInfo>();
+            var students = new List<UserInfo>();
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 try
@@ -106,8 +106,8 @@ namespace Learning_Management_and_Academic_Monitoring_system
             u.FirstName, u.Surname, u.Program, u.Section,
             c.CourseCode, c.CourseName, c.Credits
         FROM enrollments e
-        JOIN users u ON e.studentId = u.UserID
-        JOIN courses c ON e.course_id = c.CourseID
+        JOIN users u ON e.StudentID = u.UserID
+        JOIN courses c ON e.CourseID = c.CourseID
         ORDER BY u.Surname
         LIMIT 50";
 
@@ -126,14 +126,14 @@ namespace Learning_Management_and_Academic_Monitoring_system
         public static bool EnrollStudent(int studentId, int courseId)
         {
             string query = @"
-        INSERT IGNORE INTO enrollments (studentId, course_id, enroll_date) 
+        INSERT IGNORE INTO enrollments (StudentID, CourseID, EnrollmentDate) 
         VALUES (@studentId, @courseId, NOW())";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@userId", studentId);
+                    cmd.Parameters.AddWithValue("@studentId", studentId);
                     cmd.Parameters.AddWithValue("@courseId", courseId);
                     conn.Open();
                     int rows = cmd.ExecuteNonQuery();
@@ -155,8 +155,8 @@ namespace Learning_Management_and_Academic_Monitoring_system
             COALESCE(c.Semester, 'Fall 2024') AS Semester,
             0 AS ActivityCount  -- Add activities table later
         FROM enrollments e
-        JOIN courses c ON e.course_id = c.CourseID
-        WHERE e.studentId = @studentId
+        JOIN courses c ON e.CourseID = c.CourseID
+        WHERE e.StudentID = @studentId
         ORDER BY c.CourseCode";
 
             var courses = new List<StudentSubjectInfo>();
@@ -167,7 +167,7 @@ namespace Learning_Management_and_Academic_Monitoring_system
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@userId", studentId);
+                        cmd.Parameters.AddWithValue("@studentId", studentId);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -194,5 +194,67 @@ namespace Learning_Management_and_Academic_Monitoring_system
             }
             return courses;
         }
+
+        // === GRADE METHODS ===
+
+        public static decimal ConvertToGPA(decimal percentage)
+        {
+            if (percentage >= 97) return 1.00m;
+            if (percentage >= 94) return 1.25m;
+            if (percentage >= 90) return 1.50m;
+            if (percentage >= 87) return 1.75m;
+            if (percentage >= 83) return 2.00m;
+            if (percentage >= 80) return 2.25m;
+            if (percentage >= 77) return 2.50m;
+            if (percentage >= 74) return 2.75m;
+            if (percentage >= 70) return 3.00m;
+            return 5.00m;
+        }
+
+        public static bool SaveGrades(int studentId, int courseId,
+            decimal? prelim, decimal? midterm, decimal? preFinals, decimal? finals)
+        {
+            decimal? finalGrade = null;
+            decimal? gpa = null;
+            string remarks = null;
+
+            if (prelim.HasValue && midterm.HasValue && preFinals.HasValue && finals.HasValue)
+            {
+                finalGrade = Math.Round((prelim.Value + midterm.Value + preFinals.Value + finals.Value) / 4, 2);
+                gpa = ConvertToGPA(finalGrade.Value);
+                remarks = gpa.Value <= 3.00m ? "Passed" : "Failed";
+            }
+
+            string query = @"
+                INSERT INTO grades (StudentID, CourseID, Prelim, Midterm, PreFinals, Finals, FinalGrade, GPA, Remarks)
+                VALUES (@studentId, @courseId, @prelim, @midterm, @preFinals, @finals, @finalGrade, @gpa, @remarks)
+                ON DUPLICATE KEY UPDATE
+                    Prelim      = @prelim,
+                    Midterm     = @midterm,
+                    PreFinals   = @preFinals,
+                    Finals      = @finals,
+                    FinalGrade  = @finalGrade,
+                    GPA         = @gpa,
+                    Remarks     = @remarks";
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@studentId", studentId);
+                    cmd.Parameters.AddWithValue("@courseId", courseId);
+                    cmd.Parameters.AddWithValue("@prelim", (object)prelim ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@midterm", (object)midterm ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@preFinals", (object)preFinals ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@finals", (object)finals ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@finalGrade", (object)finalGrade ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@gpa", (object)gpa ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@remarks", (object)remarks ?? DBNull.Value);
+                    conn.Open();
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
     }
 }
+// placeholder to allow append

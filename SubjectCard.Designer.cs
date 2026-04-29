@@ -94,14 +94,16 @@
             // 
             // lblProgressBar
             // 
-            this.lblProgressBar.AutoSize = true;
+            this.lblProgressBar.AutoSize = false;
             this.lblProgressBar.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProgressBar.ForeColor = System.Drawing.Color.Black;
-            this.lblProgressBar.Location = new System.Drawing.Point(29, 49);
+            this.lblProgressBar.Location = new System.Drawing.Point(0, 0);
+            this.lblProgressBar.Size = new System.Drawing.Size(125, 125);
             this.lblProgressBar.Name = "lblProgressBar";
-            this.lblProgressBar.Size = new System.Drawing.Size(65, 29);
             this.lblProgressBar.TabIndex = 0;
-            this.lblProgressBar.Text = "100%";
+            this.lblProgressBar.Text = "0%";
+            this.lblProgressBar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblProgressBar.BackColor = System.Drawing.Color.Transparent;
             // 
             // btnView
             // 

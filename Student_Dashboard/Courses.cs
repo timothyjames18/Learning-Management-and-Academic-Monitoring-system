@@ -22,6 +22,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             studentId = userId;
             InitializeComponent();
             LoadCurrentProfile();
+            LoadEnrolledSubjects(studentId);
         }
         private void LoadCurrentProfile()
         {
@@ -68,8 +69,9 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
         {
             flowLayoutPanelSubjects.Controls.Clear();
 
-            // Gets YOUR StudentSubjectInfo list!
             var courses = DatabaseHelper.GetEnrolledSubjects(userId);
+
+            label1.Text = $"Enrolled in {courses.Count} Subject{(courses.Count != 1 ? "s" : "")}";
 
             foreach (var course in courses)  // StudentSubjectInfo objects
             {
@@ -77,7 +79,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                 card.LoadCourse(course);  // Pass YOUR object!
 
                 //card.btnView_Clicked += (s, courseId) =>
-                   //MessageBox.Show($"Opening CourseID: {courseId}");
+                //MessageBox.Show($"Opening CourseID: {courseId}");
 
                 flowLayoutPanelSubjects.Controls.Add(card);
             }
