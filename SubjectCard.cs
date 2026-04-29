@@ -30,8 +30,8 @@ namespace Learning_Management_and_Academic_Monitoring_system
         {
             // YOUR PROPERTIES!
             lblTitle.Text = $"{Course.CourseCode} - {Course.CourseName}";
-            lblSchedule.Text = $"📚 {Course.Schedule}";
-            lblRoom.Text = $"🏫 {Course.Room}";
+            lblSchedule.Text = $"{Course.Schedule}";
+            lblRoom.Text = $"{Course.Room}";
             lblDetails.Text = $"{Course.Credits} Credits • {Course.Semester} • {Course.ActivityCount} Activities";
 
             // Default to 100% when no activities have been uploaded yet
