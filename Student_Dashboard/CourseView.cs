@@ -23,7 +23,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
         public CourseView()
         {
             InitializeComponent();
-            this.Resize += (s, e) => AdjustPostWidths();
+            this.Resize += new System.EventHandler(this.CourseView_Resize);
         }
 
         // ── Public ───────────────────────────────────────────────────────────
@@ -45,7 +45,14 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             HighlightFilter(btnAll);
         }
 
-        // ── Filter handlers (called from Designer) ───────────────────────────
+        // ── Filter button click handlers ─────────────────────────────────────
+
+        private void btnAll_Click(object sender, EventArgs e) { ApplyFilter("All"); }
+        private void btnAnnouncements_Click(object sender, EventArgs e) { ApplyFilter("Announcement"); }
+        private void btnActivities_Click(object sender, EventArgs e) { ApplyFilter("Activity"); }
+        private void btnLinks_Click(object sender, EventArgs e) { ApplyFilter("Link"); }
+
+        private void CourseView_Resize(object sender, EventArgs e) { AdjustPostWidths(); }
 
         private void ApplyFilter(string filter)
         {
@@ -94,7 +101,9 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                 }
             }
 
-            flowPosts.ResumeLayout();
+            flowPosts.ResumeLayout(true);   // true = perform layout immediately
+            flowPosts.PerformLayout();       // ensure AutoSize recalculates height
+            pnlScroll.PerformLayout();       // reflow scroll panel so cards appear
         }
 
         private void HighlightFilter(Button active)

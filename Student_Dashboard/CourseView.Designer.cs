@@ -90,15 +90,54 @@
             this.pnlFilterBar.Controls.Add(this.btnLinks);
             this.pnlFilterBar.Controls.Add(this.lblPostCount);
 
-            MakeFilterBtn(this.btnAll, "All", 16, 80);
-            MakeFilterBtn(this.btnAnnouncements, "📢 Announcements", 106, 140);
-            MakeFilterBtn(this.btnActivities, "📋 Activities", 256, 110);
-            MakeFilterBtn(this.btnLinks, "🔗 Links/Quizzes", 376, 120);
+            // btnAll
+            this.btnAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAll.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(180, 200, 220);
+            this.btnAll.BackColor = System.Drawing.Color.White;
+            this.btnAll.ForeColor = System.Drawing.Color.FromArgb(60, 80, 110);
+            this.btnAll.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.btnAll.Text = "All";
+            this.btnAll.Location = new System.Drawing.Point(16, 8);
+            this.btnAll.Size = new System.Drawing.Size(80, 30);
+            this.btnAll.Cursor = System.Windows.Forms.Cursors.Hand;
 
-            this.btnAll.Click += (s, e) => ApplyFilter("All");
-            this.btnAnnouncements.Click += (s, e) => ApplyFilter("Announcement");
-            this.btnActivities.Click += (s, e) => ApplyFilter("Activity");
-            this.btnLinks.Click += (s, e) => ApplyFilter("Link");
+            // btnAnnouncements
+            this.btnAnnouncements.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAnnouncements.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(180, 200, 220);
+            this.btnAnnouncements.BackColor = System.Drawing.Color.White;
+            this.btnAnnouncements.ForeColor = System.Drawing.Color.FromArgb(60, 80, 110);
+            this.btnAnnouncements.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.btnAnnouncements.Text = "📢 Announcements";
+            this.btnAnnouncements.Location = new System.Drawing.Point(106, 8);
+            this.btnAnnouncements.Size = new System.Drawing.Size(140, 30);
+            this.btnAnnouncements.Cursor = System.Windows.Forms.Cursors.Hand;
+
+            // btnActivities
+            this.btnActivities.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActivities.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(180, 200, 220);
+            this.btnActivities.BackColor = System.Drawing.Color.White;
+            this.btnActivities.ForeColor = System.Drawing.Color.FromArgb(60, 80, 110);
+            this.btnActivities.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.btnActivities.Text = "📋 Activities";
+            this.btnActivities.Location = new System.Drawing.Point(256, 8);
+            this.btnActivities.Size = new System.Drawing.Size(110, 30);
+            this.btnActivities.Cursor = System.Windows.Forms.Cursors.Hand;
+
+            // btnLinks
+            this.btnLinks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLinks.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(180, 200, 220);
+            this.btnLinks.BackColor = System.Drawing.Color.White;
+            this.btnLinks.ForeColor = System.Drawing.Color.FromArgb(60, 80, 110);
+            this.btnLinks.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.btnLinks.Text = "🔗 Links/Quizzes";
+            this.btnLinks.Location = new System.Drawing.Point(376, 8);
+            this.btnLinks.Size = new System.Drawing.Size(120, 30);
+            this.btnLinks.Cursor = System.Windows.Forms.Cursors.Hand;
+
+            this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
+            this.btnAnnouncements.Click += new System.EventHandler(this.btnAnnouncements_Click);
+            this.btnActivities.Click += new System.EventHandler(this.btnActivities_Click);
+            this.btnLinks.Click += new System.EventHandler(this.btnLinks_Click);
 
             // lblPostCount
             this.lblPostCount.AutoSize = false;
@@ -149,20 +188,9 @@
             this.pnlHeader.ResumeLayout(false);
             this.pnlFilterBar.ResumeLayout(false);
             this.pnlScroll.ResumeLayout(false);
+            this.pnlScroll.PerformLayout();
             this.ResumeLayout(false);
-        }
-
-        private void MakeFilterBtn(System.Windows.Forms.Button b, string text, int x, int w)
-        {
-            b.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            b.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(180, 200, 220);
-            b.BackColor = System.Drawing.Color.White;
-            b.ForeColor = System.Drawing.Color.FromArgb(60, 80, 110);
-            b.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            b.Text = text;
-            b.Location = new System.Drawing.Point(x, 8);
-            b.Size = new System.Drawing.Size(w, 30);
-            b.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PerformLayout();
         }
 
         #endregion
