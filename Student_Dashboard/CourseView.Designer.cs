@@ -25,12 +25,18 @@
             this.btnActivities = new System.Windows.Forms.Button();
             this.btnLinks = new System.Windows.Forms.Button();
             this.lblPostCount = new System.Windows.Forms.Label();
+            this.pnlProgressBar = new System.Windows.Forms.Panel();
+            this.lblProgress = new System.Windows.Forms.Label();
+            this.pnlProgressTrack = new System.Windows.Forms.Panel();
+            this.progressFill = new System.Windows.Forms.Panel();
             this.pnlScroll = new System.Windows.Forms.Panel();
             this.flowPosts = new System.Windows.Forms.FlowLayoutPanel();
             this.lblNoPosts = new System.Windows.Forms.Label();
 
             this.pnlHeader.SuspendLayout();
             this.pnlFilterBar.SuspendLayout();
+            this.pnlProgressBar.SuspendLayout();
+            this.pnlProgressTrack.SuspendLayout();
             this.pnlScroll.SuspendLayout();
             this.SuspendLayout();
 
@@ -118,21 +124,22 @@
             this.btnActivities.BackColor = System.Drawing.Color.White;
             this.btnActivities.ForeColor = System.Drawing.Color.FromArgb(60, 80, 110);
             this.btnActivities.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.btnActivities.Text = "📋 Activities";
+            this.btnActivities.Text = "📋 Activities & Quizzes";
             this.btnActivities.Location = new System.Drawing.Point(256, 8);
-            this.btnActivities.Size = new System.Drawing.Size(110, 30);
+            this.btnActivities.Size = new System.Drawing.Size(160, 30);
             this.btnActivities.Cursor = System.Windows.Forms.Cursors.Hand;
 
-            // btnLinks
+            // btnLinks  (kept for legacy / direct filter)
             this.btnLinks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLinks.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(180, 200, 220);
             this.btnLinks.BackColor = System.Drawing.Color.White;
             this.btnLinks.ForeColor = System.Drawing.Color.FromArgb(60, 80, 110);
             this.btnLinks.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.btnLinks.Text = "🔗 Links/Quizzes";
-            this.btnLinks.Location = new System.Drawing.Point(376, 8);
-            this.btnLinks.Size = new System.Drawing.Size(120, 30);
+            this.btnLinks.Text = "🔗 Links";
+            this.btnLinks.Location = new System.Drawing.Point(426, 8);
+            this.btnLinks.Size = new System.Drawing.Size(90, 30);
             this.btnLinks.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLinks.Visible = false;   // hidden — quizzes/links now grouped under Activities
 
             this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
             this.btnAnnouncements.Click += new System.EventHandler(this.btnAnnouncements_Click);
@@ -142,13 +149,41 @@
             // lblPostCount
             this.lblPostCount.AutoSize = false;
             this.lblPostCount.Anchor = System.Windows.Forms.AnchorStyles.Right
-                                         | System.Windows.Forms.AnchorStyles.Top;
+                                        | System.Windows.Forms.AnchorStyles.Top;
             this.lblPostCount.Size = new System.Drawing.Size(120, 46);
             this.lblPostCount.Font = new System.Drawing.Font("Segoe UI", 8.5F);
             this.lblPostCount.ForeColor = System.Drawing.Color.Gray;
             this.lblPostCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblPostCount.Text = "0 posts";
             this.lblPostCount.Left = 900; // repositioned in OnResize
+
+            // ── pnlProgressBar ─────────────────────────────────────────────
+            this.pnlProgressBar.BackColor = System.Drawing.Color.FromArgb(245, 247, 252);
+            this.pnlProgressBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlProgressBar.Height = 40;
+            this.pnlProgressBar.Padding = new System.Windows.Forms.Padding(16, 6, 16, 6);
+            this.pnlProgressBar.Controls.Add(this.lblProgress);
+            this.pnlProgressBar.Controls.Add(this.pnlProgressTrack);
+            this.pnlProgressBar.Visible = false; // shown when activities > 0
+
+            // lblProgress
+            this.lblProgress.AutoSize = false;
+            this.lblProgress.Location = new System.Drawing.Point(16, 8);
+            this.lblProgress.Size = new System.Drawing.Size(400, 16);
+            this.lblProgress.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.lblProgress.ForeColor = System.Drawing.Color.FromArgb(50, 80, 110);
+            this.lblProgress.Text = "Activities Progress:  0 / 0 completed  (0%)";
+
+            // pnlProgressTrack (grey background bar)
+            this.pnlProgressTrack.Location = new System.Drawing.Point(16, 26);
+            this.pnlProgressTrack.Size = new System.Drawing.Size(600, 8);
+            this.pnlProgressTrack.BackColor = System.Drawing.Color.FromArgb(210, 215, 225);
+            this.pnlProgressTrack.Controls.Add(this.progressFill);
+
+            // progressFill (coloured fill)
+            this.progressFill.Location = new System.Drawing.Point(1, 1);
+            this.progressFill.Size = new System.Drawing.Size(0, 6);
+            this.progressFill.BackColor = System.Drawing.Color.FromArgb(52, 168, 83);
 
             // ── pnlScroll ──────────────────────────────────────────────────
             this.pnlScroll.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -179,7 +214,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(240, 242, 245);
+            // Order matters: Fill must be added first, then Top-docked panels
             this.Controls.Add(this.pnlScroll);
+            this.Controls.Add(this.pnlProgressBar);
             this.Controls.Add(this.pnlFilterBar);
             this.Controls.Add(this.pnlHeader);
             this.Name = "CourseView";
@@ -187,6 +224,8 @@
 
             this.pnlHeader.ResumeLayout(false);
             this.pnlFilterBar.ResumeLayout(false);
+            this.pnlProgressBar.ResumeLayout(false);
+            this.pnlProgressTrack.ResumeLayout(false);
             this.pnlScroll.ResumeLayout(false);
             this.pnlScroll.PerformLayout();
             this.ResumeLayout(false);
@@ -206,6 +245,10 @@
         private System.Windows.Forms.Button btnActivities;
         private System.Windows.Forms.Button btnLinks;
         private System.Windows.Forms.Label lblPostCount;
+        private System.Windows.Forms.Panel pnlProgressBar;
+        private System.Windows.Forms.Label lblProgress;
+        private System.Windows.Forms.Panel pnlProgressTrack;
+        private System.Windows.Forms.Panel progressFill;
         private System.Windows.Forms.Panel pnlScroll;
         private System.Windows.Forms.FlowLayoutPanel flowPosts;
         private System.Windows.Forms.Label lblNoPosts;

@@ -27,11 +27,15 @@
             this.pnlLinkRow = new System.Windows.Forms.Panel();
             this.lblLinkIcon = new System.Windows.Forms.Label();
             this.lnkURL = new System.Windows.Forms.LinkLabel();
+            this.pnlActionRow = new System.Windows.Forms.Panel();
+            this.btnUpload = new System.Windows.Forms.Button();
+            this.btnTaskComplete = new System.Windows.Forms.Button();
 
             this.pnlCard.SuspendLayout();
             this.pnlBody.SuspendLayout();
             this.pnlDueRow.SuspendLayout();
             this.pnlLinkRow.SuspendLayout();
+            this.pnlActionRow.SuspendLayout();
             this.SuspendLayout();
 
             // ── pnlCard ────────────────────────────────────────────────────
@@ -55,6 +59,7 @@
             this.pnlBody.Controls.Add(this.lblContent);
             this.pnlBody.Controls.Add(this.pnlDueRow);
             this.pnlBody.Controls.Add(this.pnlLinkRow);
+            this.pnlBody.Controls.Add(this.pnlActionRow);
 
             // lblBadge
             this.lblBadge.AutoSize = true;
@@ -110,7 +115,7 @@
 
             // pnlLinkRow
             this.pnlLinkRow.AutoSize = true;
-            this.pnlLinkRow.Location = new System.Drawing.Point(14, 142);
+            this.pnlLinkRow.Location = new System.Drawing.Point(14, 162);
             this.pnlLinkRow.BackColor = System.Drawing.Color.Transparent;
             this.pnlLinkRow.Visible = false;
             this.pnlLinkRow.Controls.Add(this.lblLinkIcon);
@@ -127,13 +132,46 @@
             this.lnkURL.Text = "Open link";
             this.lnkURL.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkURL_LinkClicked);
 
+            // ── pnlActionRow (Upload + Task Complete) ──────────────────────
+            this.pnlActionRow.AutoSize = true;
+            this.pnlActionRow.Location = new System.Drawing.Point(14, 186);
+            this.pnlActionRow.BackColor = System.Drawing.Color.Transparent;
+            this.pnlActionRow.Visible = false;
+            this.pnlActionRow.Controls.Add(this.btnUpload);
+            this.pnlActionRow.Controls.Add(this.btnTaskComplete);
+
+            // btnUpload
+            this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpload.FlatAppearance.BorderSize = 0;
+            this.btnUpload.BackColor = System.Drawing.Color.FromArgb(66, 133, 244);
+            this.btnUpload.ForeColor = System.Drawing.Color.White;
+            this.btnUpload.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
+            this.btnUpload.Text = "📁  Upload File";
+            this.btnUpload.Location = new System.Drawing.Point(0, 0);
+            this.btnUpload.Size = new System.Drawing.Size(130, 30);
+            this.btnUpload.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+
+            // btnTaskComplete
+            this.btnTaskComplete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTaskComplete.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(52, 168, 83);
+            this.btnTaskComplete.FlatAppearance.BorderSize = 1;
+            this.btnTaskComplete.BackColor = System.Drawing.Color.White;
+            this.btnTaskComplete.ForeColor = System.Drawing.Color.FromArgb(52, 168, 83);
+            this.btnTaskComplete.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
+            this.btnTaskComplete.Text = "☐  Mark as Complete";
+            this.btnTaskComplete.Location = new System.Drawing.Point(140, 0);
+            this.btnTaskComplete.Size = new System.Drawing.Size(160, 30);
+            this.btnTaskComplete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTaskComplete.Click += new System.EventHandler(this.btnTaskComplete_Click);
+
             // ── PostCard UserControl ───────────────────────────────────────
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(240, 242, 245);
             this.Controls.Add(this.pnlCard);
             this.Name = "PostCard";
-            this.Size = new System.Drawing.Size(720, 175);
+            this.Size = new System.Drawing.Size(720, 210);
             this.Margin = new System.Windows.Forms.Padding(0, 0, 0, 10);
 
             this.pnlCard.ResumeLayout(false);
@@ -143,6 +181,8 @@
             this.pnlDueRow.PerformLayout();
             this.pnlLinkRow.ResumeLayout(false);
             this.pnlLinkRow.PerformLayout();
+            this.pnlActionRow.ResumeLayout(false);
+            this.pnlActionRow.PerformLayout();
             this.ResumeLayout(false);
         }
 
@@ -161,5 +201,8 @@
         private System.Windows.Forms.Panel pnlLinkRow;
         private System.Windows.Forms.Label lblLinkIcon;
         private System.Windows.Forms.LinkLabel lnkURL;
+        private System.Windows.Forms.Panel pnlActionRow;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.Button btnTaskComplete;
     }
 }

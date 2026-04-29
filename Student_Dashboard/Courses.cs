@@ -27,7 +27,36 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
         // ════════════════════════════════════════════════════════════════════
         //  VIEW SWITCHING
         // ════════════════════════════════════════════════════════════════════
+        private void InitializeComponent()
+        {
+            this.label1 = new System.Windows.Forms.Label();
+            this.flowLayoutPanelSubjects = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlContent = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
 
+            // label1 – will be docked Top when inside pnlContent
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1151, 28);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(40, 60, 100);
+            this.label1.Padding = new System.Windows.Forms.Padding(8, 4, 0, 4);
+            this.label1.Text = "Loading...";
+
+            // flowLayoutPanelSubjects
+            this.flowLayoutPanelSubjects.Name = "flowLayoutPanelSubjects";
+            this.flowLayoutPanelSubjects.AutoScroll = true;
+
+            // pnlContent – full-canvas swap container
+            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContent.Name = "pnlContent";
+
+            // Courses form
+            this.ClientSize = new System.Drawing.Size(1151, 688);
+            this.Controls.Add(this.pnlContent);
+            this.Name = "Courses";
+            this.Text = "Courses";
+            this.ResumeLayout(false);
+        }
         private void ShowCourseList()
         {
             pnlContent.Controls.Clear();
@@ -52,7 +81,13 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             pnlContent.Controls.Add(view);
             pnlContent.PerformLayout();
 
-            view.LoadCourse(course, studentId);
+            // BeginInvoke defers LoadCourse until AFTER StudentForm.Show()
+            // finishes its own layout pass — without this, the posts render
+            // for one frame then get wiped when the parent form finalizes.
+            this.BeginInvoke(new Action(() =>
+            {
+                view.LoadCourse(course, studentId);
+            }));
         }
 
         // ════════════════════════════════════════════════════════════════════
@@ -86,35 +121,6 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
         //  InitializeComponent
         // ════════════════════════════════════════════════════════════════════
 
-        private void InitializeComponent()
-        {
-            this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanelSubjects = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnlContent = new System.Windows.Forms.Panel();
-            this.SuspendLayout();
-
-            // label1 – will be docked Top when inside pnlContent
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1151, 28);
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(40, 60, 100);
-            this.label1.Padding = new System.Windows.Forms.Padding(8, 4, 0, 4);
-            this.label1.Text = "Loading...";
-
-            // flowLayoutPanelSubjects
-            this.flowLayoutPanelSubjects.Name = "flowLayoutPanelSubjects";
-            this.flowLayoutPanelSubjects.AutoScroll = true;
-
-            // pnlContent – full-canvas swap container
-            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Name = "pnlContent";
-
-            // Courses form
-            this.ClientSize = new System.Drawing.Size(1151, 688);
-            this.Controls.Add(this.pnlContent);
-            this.Name = "Courses";
-            this.Text = "Courses";
-            this.ResumeLayout(false);
-        }
+        
     }
 }

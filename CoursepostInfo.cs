@@ -19,6 +19,9 @@ namespace Learning_Management_and_Academic_Monitoring_system
         public bool IsLink => PostType == "Link";
         public bool IsAnnouncement => PostType == "Announcement";
 
+        // Quizzes (PostType == "Link") count as activities for progress tracking
+        public bool IsActivityOrQuiz => PostType == "Activity" || PostType == "Link";
+
         public string DueDateDisplay =>
             DueDate.HasValue ? DueDate.Value.ToString("MMM dd, yyyy  hh:mm tt") : "";
 

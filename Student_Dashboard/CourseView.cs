@@ -8,7 +8,8 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
 {
     /// <summary>
     /// UserControl that fills pnlDashboard (inside StudentForm) when a student
-    /// clicks "View" on a SubjectCard.  Shows all instructor posts for that course.
+    /// clicks "View" on a SubjectCard.  Shows all instructor posts for that course,
+    /// separated into Announcements and Activities sections with a progress bar.
     /// </summary>
     public partial class CourseView : UserControl
     {
@@ -17,7 +18,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
         private List<CoursePostInfo> _allPosts = new List<CoursePostInfo>();
         private string _activeFilter = "All";
 
-        // Raised when student presses "Back" – parent Courses form listens here
+        // Raised when student presses "Back"
         public event EventHandler BackRequested;
 
         public CourseView()
@@ -37,7 +38,6 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             lblCourseName.Text = course.CourseName;
             lblCourseMeta.Text = $"{course.Schedule}   •   Room: {course.Room}";
 
-            // Move post-count label to far right now that we know the width
             PositionPostCount();
 
             _allPosts = DatabaseHelper.GetCoursePostsByCourse(course.CourseID);
@@ -58,9 +58,14 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
         {
             _activeFilter = filter;
 
-            var visible = filter == "All"
-                ? _allPosts
-                : _allPosts.Where(p => p.PostType == filter).ToList();
+            List<CoursePostInfo> visible;
+            if (filter == "All")
+                visible = _allPosts;
+            else if (filter == "Activity")
+                // "Activities" filter shows Activity AND Link/Quiz posts
+                visible = _allPosts.Where(p => p.IsActivityOrQuiz).ToList();
+            else
+                visible = _allPosts.Where(p => p.PostType == filter).ToList();
 
             RenderPosts(visible);
 
@@ -84,27 +89,110 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             lblNoPosts.Visible = empty;
             flowPosts.Visible = !empty;
 
-            lblPostCount.Text = empty ? "0 posts"
-                                      : $"{posts.Count} post{(posts.Count != 1 ? "s" : "")}";
+            int totalPosts = posts?.Count ?? 0;
+            lblPostCount.Text = totalPosts == 0 ? "0 posts"
+                                                 : $"{totalPosts} post{(totalPosts != 1 ? "s" : "")}";
+
+            // Update progress bar (counts Activity + Link/Quiz as activities)
+            UpdateProgressBar(posts);
 
             if (!empty)
             {
                 int cardWidth = CardWidth();
-                foreach (var post in posts)
+
+                // ── Separate into sections ────────────────────────────────
+                var announcements = posts.Where(p => p.IsAnnouncement).ToList();
+                var activities = posts.Where(p => p.IsActivityOrQuiz).ToList();
+
+                bool showBothSections = announcements.Count > 0 && activities.Count > 0;
+
+                // Announcements section
+                if (announcements.Count > 0)
                 {
-                    var card = new PostCard();
-                    card.Width = cardWidth;
-                    card.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                    card.Margin = new Padding(0, 0, 0, 12);
-                    card.LoadPost(post);
-                    flowPosts.Controls.Add(card);
+                    if (showBothSections)
+                        flowPosts.Controls.Add(MakeSectionHeader("📢  Announcements", announcements.Count));
+
+                    foreach (var post in announcements)
+                        flowPosts.Controls.Add(MakeCard(post, cardWidth));
+                }
+
+                // Activities section
+                if (activities.Count > 0)
+                {
+                    if (showBothSections)
+                        flowPosts.Controls.Add(MakeSectionHeader("📋  Activities & Quizzes", activities.Count));
+
+                    foreach (var post in activities)
+                        flowPosts.Controls.Add(MakeCard(post, cardWidth));
                 }
             }
 
-            flowPosts.ResumeLayout(true);   // true = perform layout immediately
-            flowPosts.PerformLayout();       // ensure AutoSize recalculates height
-            pnlScroll.PerformLayout();       // reflow scroll panel so cards appear
+            flowPosts.ResumeLayout(true);
+            flowPosts.PerformLayout();
+            pnlScroll.PerformLayout();
         }
+
+        private PostCard MakeCard(CoursePostInfo post, int cardWidth)
+        {
+            var card = new PostCard();
+            card.Width = cardWidth;
+            card.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            card.Margin = new Padding(0, 0, 0, 12);
+            card.LoadPost(post);
+            card.CompletionChanged += (s, e) => RefreshProgressBar();
+            return card;
+        }
+
+        private Label MakeSectionHeader(string text, int count)
+        {
+            var lbl = new Label
+            {
+                AutoSize = false,
+                Width = CardWidth(),
+                Height = 34,
+                Anchor = AnchorStyles.Left | AnchorStyles.Right,
+                Margin = new Padding(0, 8, 0, 4),
+                Text = $"{text}  ({count})",
+                Font = new Font("Segoe UI Semibold", 10F),
+                ForeColor = Color.FromArgb(30, 86, 160),
+                TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
+                Padding = new Padding(4, 0, 0, 0),
+                BackColor = Color.FromArgb(220, 232, 248)
+            };
+            return lbl;
+        }
+
+        // ── Progress bar ─────────────────────────────────────────────────────
+
+        private void UpdateProgressBar(List<CoursePostInfo> visiblePosts)
+        {
+            int total = _allPosts.Count(p => p.IsActivityOrQuiz);
+            pnlProgressBar.Visible = (total > 0);
+            if (total > 0)
+                RenderProgress(total, 0);
+        }
+
+        /// <summary>Called whenever a PostCard fires CompletionChanged.</summary>
+        private void RefreshProgressBar()
+        {
+            int total = _allPosts.Count(p => p.IsActivityOrQuiz);
+            int completed = flowPosts.Controls
+                                     .OfType<PostCard>()
+                                     .Count(c => c.IsCompleted);
+
+            if (total > 0)
+                RenderProgress(total, completed);
+        }
+
+        private void RenderProgress(int total, int completed)
+        {
+            int pct = (int)((completed / (double)total) * 100);
+            lblProgress.Text = $"Activities Progress:  {completed} / {total} completed  ({pct}%)";
+            int trackWidth = Math.Max(0, pnlProgressTrack.Width - 2);
+            progressFill.Width = (int)((pct / 100.0) * trackWidth);
+        }
+
+        // ── Highlighting filter buttons ───────────────────────────────────────
 
         private void HighlightFilter(Button active)
         {
@@ -117,7 +205,7 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
                 btn.BackColor = isActive ? activeBack : inactiveBack;
                 btn.ForeColor = isActive ? Color.White : Color.FromArgb(60, 80, 110);
                 btn.Font = new Font("Segoe UI", 8.5F,
-                                    isActive ? FontStyle.Bold : FontStyle.Regular);
+                                           isActive ? FontStyle.Bold : FontStyle.Regular);
             }
         }
 
