@@ -49,9 +49,6 @@ namespace Learning_Management_and_Academic_Monitoring_system.Student_Dashboard
             view.Dock = DockStyle.Fill;
             view.BackRequested += (s, e) => ShowCourseList();
 
-            // Add to the panel FIRST so the control has real dimensions,
-            // then call LoadCourse so RenderPosts can calculate card widths
-            // and PerformLayout can actually reflow the visible control.
             pnlContent.Controls.Add(view);
             pnlContent.PerformLayout();
 
